@@ -9,19 +9,20 @@
    <h1>Creating your own Chimera</h1>
    <p>Within this app you can create your own chimera, or let the whims of fate do their thing and let one be randomly generated</p>
    <h3>Chimera Components</h3>
-   <div class="input-field">
-    <form id="create-chimera">
+   <form id="create-chimera">
+       <div class="input-field">
+           <label for="chimera-name">Name:</label>
+           <input type="text" id="chimera-name" name="chimera-name">
+        </div>
+        
         <div class="input-field">
-        <label for="chimera-name">Name:</label>
-        <input type="text" id="chimera-name" name="chimera-name">
-    </div>
     <label for="chimera-head-letter">Letter to filter by:</label>
     <select name="chimera-head-letter" id="chimera-head-letter" class="letter-filter">
     </select>
 
     <label for="chimera-head">Head</label>
     <select name="chimera-head" id="chimera-head">
-        
+        <option value = "none" selected>None</option>
     </select>
   </div>
   <div class="input-field">
@@ -30,6 +31,7 @@
     </select>
     <label for="chimera-torso">Torso</label>
     <select name="chimera-torso" id="chimera-torso">
+        <option value = "none" selected>None</option>
     </select>
   </div>
   <div class="input-field">
