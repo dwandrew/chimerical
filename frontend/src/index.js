@@ -1,11 +1,13 @@
 const BASEURL= "http://localhost:3000";
-const ALPHABETARRAY = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+const ALPHABETARRAY = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
 
 document.addEventListener("DOMContentLoaded", (event) => {
     populateLetterFilters(letterFilters(), ALPHABETARRAY);
+    postingChimera()
 }
     )
-
+let submit = () =>document.querySelector('#chimera-submit');
+let name =() => document.querySelector('input#chimera-name');
 let head = () => document.querySelector('select#chimera-head');
 let torso = () => document.querySelector('select#chimera-torso');
 let legs = () => document.querySelector('select#chimera-legs');
@@ -34,7 +36,7 @@ fetch(BASEURL + '/animals')
             return addLegOptionsTo(list, animals)
         break;
                 
-            case "chimera-tail":
+        case "chimera-tail":
             return addTailOptionsTo(list, animals)
         break;
     }
@@ -53,11 +55,14 @@ listToAdd.forEach(element => {
     option.className = "Add-Animal";
     list.add(option)
     }
-});
+})
+
+if (filterLetter === " "){
+  addNoneOption(list)
+}
 }
 
 function addWingOptionsTo(list, listToAdd){
-
     let filterLetter = list.parentNode.querySelector(".letter-filter").value
 listToAdd.forEach(element => {
     if(element.wings=== true){
@@ -69,6 +74,9 @@ listToAdd.forEach(element => {
     option.className = "Add-Animal";
     list.add(option)}}
 });
+if (filterLetter === " "){
+    addNoneOption(list)
+  }
 }
 
 function addTailOptionsTo(list, listToAdd){
@@ -81,8 +89,12 @@ function addTailOptionsTo(list, listToAdd){
         option.id= `${list}-${element.id}`
         option.value = element.name;
         option.className = "Add-Animal";
-        list.add(option)}}
+        list.add(option)}
+    }
     });
+    if (filterLetter === " "){
+        addNoneOption(list)
+      }
     }
 function addLegOptionsTo(list, listToAdd){
 
@@ -97,6 +109,9 @@ function addLegOptionsTo(list, listToAdd){
         option.className = "Add-Animal";
         list.add(option)}}
     });
+    if (filterLetter === " "){
+        addNoneOption(list)
+      }
     }
 
 function populateLetterFilters(list, letters){
@@ -141,3 +156,34 @@ function addNoneOption(list){
     list.add(noneOption)
 }
 
+function postingChimera(){
+    let button =submit()
+    button.addEventListener("click", (event) => {
+        event.preventDefault();
+        const strongParams = {
+            chimera: {
+              name: name().value,
+              head: head().value,
+              torso: torso().value,
+              wings: wings().value,
+              legs: legs().value,
+              tail: tail().value
+            }
+        }
+        console.log("clicked")
+        fetch(BASEURL+ "/chimeras", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(strongParams)
+
+        })
+        .then(resp => resp.json())
+        .then(chimera => {
+        console.log(chimera);
+      })
+    }
+    )
+}

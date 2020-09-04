@@ -16,8 +16,28 @@ class ChimerasController < ApplicationController
   # POST /chimeras
   def create
     @chimera = Chimera.new(chimera_params)
-
-    if @chimera.save
+    binding.pry
+  if @chimera.save
+    if @chimera.head != "none"
+      animal = Animal.find_by_name(@chimera.head)
+      animal.chimeras << @chimera
+    end  
+    if @chimera.torso != "none"
+      animal = Animal.find_by_name(@chimera.torso)
+      animal.chimeras << @chimera
+    end  
+    if @chimera.legs != "none"
+      animal = Animal.find_by_name(@chimera.legs)
+      animal.chimeras << @chimera
+    end  
+    if @chimera.wings != "none"
+      animal = Animal.find_by_name(@chimera.wings)
+      animal.chimeras << @chimera
+    end  
+    if @chimera.tail != "none"
+      animal = Animal.find_by_name(@chimera.tail)
+      animal.chimeras << @chimera
+    end  
       render json: @chimera, status: :created, location: @chimera
     else
       render json: @chimera.errors, status: :unprocessable_entity
