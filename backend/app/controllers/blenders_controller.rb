@@ -1,0 +1,2 @@
+class BlendersController < ApplicationController
+end
