@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <script type="application/javascript" src="src/index.js" charset="UTF-8"></script>
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-   Sample text - replace me! 
-  </body>
+   <h1>Creating your own Chimera</h1>
+   <p>Within this app you can create your own chimera, or let the whims of fate do their thing and let one be randomly generated</p>
+   <h3>Chimera Components</h3>
+   <div class="input-field">
+    <form id="create-chimera">
+        <div class="input-field">
+        <label for="chimera-name">Name:</label>
+        <input type="text" id="chimera-name" name="chimera-name">
+    </div>
+    <label for="chimera-head">Head</label>
+    <select name="chimera-head" id="chimera-head">
+        
+    </select>
+  </div>
+  <div class="input-field">
+    <label for="chimera-torso">Torso</label>
+    <select name="chimera-torso" id="chimera-torso">
+    </select>
+  </div>
+  <div class="input-field">
+    <label for="chimera-legs">Legs</label>
+    <select name="chimera-legs" id="chimera-legs">
+        <option value = "none" selected>None</option>
+    </select>
+  </div>
+  <div class="input-field">
+    <label for="chimera-tail">Tail</label>
+    <select name="chimera-tail" id="chimera-tail">
+        <option value = "none" selected>None</option>
+    </select>
+  </div>
+  <div class="input-field">
+    <label for="chimera-wings">Wings</label>
+    <select name="chimera-wings" id="chimera-wings">
+        <option value = "none" selected>None</option>
+    </select>
+  </div>
+  <input type="submit">
+</form>
+
+</body>
 </html>
