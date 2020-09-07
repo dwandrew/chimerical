@@ -4,6 +4,8 @@ const ALPHABETARRAY = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","
 document.addEventListener("DOMContentLoaded", (event) => {
     populateLetterFilters(letterFilters(), ALPHABETARRAY);
     postingChimera()
+    populateChimeraList()
+    randomButtoniser()
 }
     )
 let submit = () =>document.querySelector('#chimera-submit');
@@ -14,7 +16,9 @@ let legs = () => document.querySelector('select#chimera-legs');
 let wings = () => document.querySelector('select#chimera-wings');
 let tail = () => document.querySelector('select#chimera-tail');
 let letterFilters = () => document.getElementsByClassName("letter-filter")
-
+let chimeraDiv = () => document.getElementById("chimera-list")
+let animalSelect = () => document.getElementsByClassName("animal-select")
+let randomButton = () => document.getElementsByClassName('randomiser-button')
 function populateSelectOptions(list){
  
 fetch(BASEURL + '/animals')
@@ -170,7 +174,7 @@ function postingChimera(){
               tail: tail().value
             }
         }
-        console.log("clicked")
+        
         fetch(BASEURL+ "/chimeras", {
             method: "POST",
             headers: {
@@ -182,8 +186,133 @@ function postingChimera(){
         })
         .then(resp => resp.json())
         .then(chimera => {
-        console.log(chimera);
+            console.log("response got")
+        console.log(chimera)
+        let newChimera = setNewChimera(chimera)
+        console.log(newChimera)
+        let card = makeChimeraCard(newChimera)
+        chimeraDiv().appendChild(card)
+        resetLetterFilters()
+        resetAnimalSelect()
+        name().value = ""
       })
     }
     )
+}
+
+
+function resetLetterFilters(){
+    let filters = letterFilters()
+    for (let i =0; i<filters.length; i++){
+        filters[i].value=" "
+    }
+}
+
+function resetAnimalSelect(){
+    let animalSelect= document.getElementsByClassName("animal-select")
+    for (let i =0; i<animalSelect.length; i++){
+        animalSelect[i].value = ""
+    }
+}
+
+function populateChimeraList(){
+    fetch(BASEURL+ '/chimeras')
+    .then(resp => resp.json())
+    .then(chimerasList => {
+        console.log(chimerasList)
+        chimerasList.forEach(chimera => {
+           let chimeraCard = makeChimeraCard(chimera)
+           chimeraDiv().appendChild(chimeraCard)
+        })
+    })
+
+}
+
+function makeChimeraCard(chimera){
+    let chimeraCard = document.createElement("div")
+    chimeraCard.className = "chimera-card"
+    chimeraCard.id = `chimera-${chimera.id}`
+    let name = document.createElement('h2')
+    name.innerText = `Name: ${chimera.name}`
+    let head = document.createElement('p')
+    head.innerText = `Head: ${chimera.head}`
+    let torso = document.createElement('p')
+    torso.innerText = `Torso: ${chimera.torso}`
+
+    let legs = document.createElement('p')
+    legs.innerText = `Legs: ${chimera.legs}`
+    
+    
+    let wings = document.createElement('p')
+    wings.innerText = `Wings: ${chimera.wings}`
+    
+    let tail = document.createElement('p')
+    tail.innerText = `Tail: ${chimera.tail}`
+
+    let editButton = document.createElement('button')
+    editButton.innerText = "Edit"
+    editButton.id = `edit-${chimera.id}`
+    editButton.addEventListener("click", editEntry())
+
+    let deleteButton = document.createElement('button')
+    deleteButton.innerText = "Delete"
+    deleteButton.id = `delete-${chimera.id}`
+    deleteButton.addEventListener("click", (event) => deleteEntry(event))
+   
+    chimeraCard.appendChild(name)
+    chimeraCard.appendChild(head)
+    chimeraCard.appendChild(torso)
+    chimeraCard.appendChild(wings)
+    chimeraCard.appendChild(tail)
+    chimeraCard.appendChild(legs)
+    chimeraCard.appendChild(editButton)
+    chimeraCard.appendChild(deleteButton)
+    return chimeraCard
+}
+
+function deleteEntry(){
+let postId = event.target.id
+let chimeraId = event.target.id.split("-")[1]
+fetch(BASEURL+ '/chimeras' + `/${chimeraId}`, {
+    method: "DELETE",
+})
+    let div = event.target.parentNode
+    div.parentNode.removeChild(div)
+}
+
+function editEntry(){
+
+}
+
+function randomButtoniser(){
+    let buttons = randomButton()
+    for (i=0; i<buttons.length; i++){
+        buttons[i].addEventListener("click", (event)=> {
+            event.preventDefault();
+            console.log(`random button ${event.target.id} clicked`)
+            console.log(event.target.parentNode)
+            let letters = event.target.parentNode.getElementsByClassName("letter-filter")
+            let randomLetter = letters[0].innerText
+        })
+    }
+}
+
+// ------------------------------------
+// Class definitions
+
+function setNewChimera(chimera){
+    let newChimera = new Chimera(chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs);
+    return newChimera
+}
+
+class Chimera{
+constructor(name, head, torso, tail, wings, legs){
+    this.name = name;
+    this.head = head;
+    this.torso = torso;
+    this.tail = tail;
+    this.wings = wings;
+    this.legs = legs;
+}
+
 }
