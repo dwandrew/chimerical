@@ -19,6 +19,7 @@ let letterFilters = () => document.getElementsByClassName("letter-filter")
 let chimeraDiv = () => document.getElementById("chimera-list")
 let animalSelect = () => document.getElementsByClassName("animal-select")
 let randomButton = () => document.getElementsByClassName('randomiser-button')
+
 function populateSelectOptions(list){
  
 fetch(BASEURL + '/animals')
@@ -262,9 +263,9 @@ function makeChimeraCard(chimera){
     chimeraCard.appendChild(name)
     chimeraCard.appendChild(head)
     chimeraCard.appendChild(torso)
+    chimeraCard.appendChild(legs)
     chimeraCard.appendChild(wings)
     chimeraCard.appendChild(tail)
-    chimeraCard.appendChild(legs)
     chimeraCard.appendChild(editButton)
     chimeraCard.appendChild(deleteButton)
     return chimeraCard
@@ -289,14 +290,68 @@ function randomButtoniser(){
     for (i=0; i<buttons.length; i++){
         buttons[i].addEventListener("click", (event)=> {
             event.preventDefault();
-            console.log(`random button ${event.target.id} clicked`)
-            console.log(event.target.parentNode)
             let letters = event.target.parentNode.getElementsByClassName("letter-filter")
-            let randomLetter = letters[0].innerText
+            let alphabet = ALPHABETARRAY.slice(1)
+            let num = randomNumFromArray(alphabet)
+            let animalLetter = letters[0].value = alphabet[num]
+            let animalSelector = event.target.parentNode.querySelector(".animal-select")
+            let bodyPart = animalSelector.id.split("-")[1]
+            let animal = getAnimal(bodyPart, animalLetter, animalSelector)
+            animalSelector.value = animal
+
         })
     }
 }
 
+function randomNumFromArray(array){
+    return Math.floor(Math.random() *array.length)
+}
+
+function getAnimal(bodyPart, animalLetter, animalSelector){
+fetch(BASEURL + "/animals")
+.then(resp => resp.json())
+.then(animals => {
+        let animal = ''
+        if (bodyPart === 'head'){
+        let list = animals.filter(animal => animal.name[0]=== animalLetter)
+        randomOptions(list, animalSelector)
+        }
+        else if (bodyPart === 'torso'){
+            let list = animals.filter(animal => animal.name[0]=== animalLetter)
+            randomOptions(list, animalSelector)
+        }
+        else if (bodyPart === 'legs'){
+            let list = animals.filter(animal => animal.name[0]=== animalLetter)
+            list = list.filter(animal => animal.legs === true)
+            randomOptions(list, animalSelector)
+        }
+        else if (bodyPart === 'wings'){
+            let list = animals.filter(animal => animal.name[0]=== animalLetter)
+            list = list.filter(animal => animal.wings === true)
+            randomOptions(list, animalSelector)
+        }
+        else if (bodyPart === 'tail'){
+            let list = animals.filter(animal => animal.name[0]=== animalLetter)
+            list = list.filter(animal => animal.tail === true)
+            randomOptions(list, animalSelector)
+        }
+
+})
+}
+
+function randomOptions(list, animalSelector){
+let num = randomNumFromArray(list)
+let animal = list[num]
+let option = document.createElement("option")
+option.innerText = animal.name
+option.id= `${list}-${animal.id}`
+option.value = animal.name;
+option.className = "Add-Animal";
+while (animalSelector.firstChild) {
+    animalSelector.removeChild(animalSelector.firstChild);
+}
+return animalSelector.appendChild(option)
+}
 // ------------------------------------
 // Class definitions
 
