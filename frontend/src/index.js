@@ -212,9 +212,13 @@ function resetLetterFilters(){
 function resetAnimalSelect(){
     let animalSelect= document.getElementsByClassName("animal-select")
     for (let i =0; i<animalSelect.length; i++){
-        animalSelect[i].value = ""
+        while (animalSelect[i].firstChild) {
+            animalSelect[i].removeChild(animalSelect[i].firstChild);
+        }
+        addNoneOption(animalSelect[i])
     }
 }
+
 
 function populateChimeraList(){
     fetch(BASEURL+ '/chimeras')
