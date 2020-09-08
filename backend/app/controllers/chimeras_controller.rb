@@ -16,31 +16,66 @@ class ChimerasController < ApplicationController
   # POST /chimeras
   def create
     @chimera = Chimera.new(chimera_params)
-    binding.pry
   if @chimera.save
     if @chimera.head != "none"
       animal = Animal.find_by_name(@chimera.head)
+      if !animal.chimeras.include?(@chimera)
       animal.chimeras << @chimera
+      animal.save
+      end
+      if !@chimera.animals.include?(animal)
+        @chimera.animals << animal
+        @chimera.save
+      end
     end  
     if @chimera.torso != "none"
       animal = Animal.find_by_name(@chimera.torso)
-      animal.chimeras << @chimera
+      if !animal.chimeras.include?(@chimera)
+        animal.chimeras << @chimera
+        animal.save
+        end
+      if !@chimera.animals.include?(animal)
+      @chimera.animals << animal
+      @chimera.save
+      end
     end  
     if @chimera.legs != "none"
       animal = Animal.find_by_name(@chimera.legs)
-      animal.chimeras << @chimera
+      if !animal.chimeras.include?(@chimera)
+        animal.chimeras << @chimera
+        animal.save
+        end
+      if !@chimera.animals.include?(animal)
+        @chimera.animals << animal
+        @chimera.save
+      end
     end  
     if @chimera.wings != "none"
       animal = Animal.find_by_name(@chimera.wings)
-      animal.chimeras << @chimera
+      if !animal.chimeras.include?(@chimera)
+        animal.chimeras << @chimera
+        animal.save
+        end
+      if !@chimera.animals.include?(animal)
+        @chimera.animals << animal
+        @chimera.save
+      end
     end  
     if @chimera.tail != "none"
       animal = Animal.find_by_name(@chimera.tail)
-      animal.chimeras << @chimera
+      if !animal.chimeras.include?(@chimera)
+        animal.chimeras << @chimera
+        animal.save
+        end
+      if !@chimera.animals.include?(animal)
+        @chimera.animals << animal
+        @chimera.save
+      end
+      
     end  
       render json: @chimera, status: :created, location: @chimera
     else
-      render json: @chimera.errors, status: :unprocessable_entity
+      render json: @chimera.errors, status: :unprocessable_entity, message: @chimera.errors.full_messages
     end
   end
 
