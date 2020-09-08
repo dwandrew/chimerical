@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     randomButtoniser()
 }
     )
+
+let editing = false;
+let editedChimeraId = null;
 let submit = () =>document.querySelector('#chimera-submit');
 let name =() => document.querySelector('input#chimera-name');
 let head = () => document.querySelector('select#chimera-head');
@@ -19,6 +22,7 @@ let letterFilters = () => document.getElementsByClassName("letter-filter")
 let chimeraDiv = () => document.getElementById("chimera-list")
 let animalSelect = () => document.getElementsByClassName("animal-select")
 let randomButton = () => document.getElementsByClassName('randomiser-button')
+let submitForm = () => document.getElementsByClassName("create-chimera")[0]
 
 function populateSelectOptions(list){
  
@@ -175,7 +179,7 @@ function postingChimera(){
               tail: tail().value
             }
         }
-        
+        if (!editing){
         fetch(BASEURL+ "/chimeras", {
             method: "POST",
             headers: {
@@ -188,17 +192,45 @@ function postingChimera(){
         .then(resp => resp.json())
         .then(chimera => {
             console.log("response got")
-        console.log(chimera)
         let newChimera = setNewChimera(chimera)
-        console.log(newChimera)
-        let card = makeChimeraCard(newChimera)
+        let card = makeChimeraCard(chimera)
         chimeraDiv().appendChild(card)
         resetLetterFilters()
         resetAnimalSelect()
         name().value = ""
-      })
+            }
+        )
+        }
+        else {
+           let chimeraId =  event.target.parentNode.id
+           fetch(BASEURL + '/chimeras' +`/${chimeraId}`, {
+               method: "PATCH",
+               headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(strongParams)
+                })
+              .then(resp => resp.json())
+              .then(chimera => {
+                let newChimera = setNewChimera(chimera)
+                let div = document.getElementById(`chimera-${chimera.id}`)
+                editChimeraCard(chimera, div)
+                editing = false
+                button.value = "Submit"
+              }
+           )
+        }
     }
+    
     )
+    
+
+
+  
+        
+
+        
 }
 
 
@@ -238,26 +270,31 @@ function makeChimeraCard(chimera){
     chimeraCard.className = "chimera-card"
     chimeraCard.id = `chimera-${chimera.id}`
     let name = document.createElement('h2')
+    name.className = "name"
     name.innerText = `Name: ${chimera.name}`
     let head = document.createElement('p')
+    head.className = "head"
     head.innerText = `Head: ${chimera.head}`
     let torso = document.createElement('p')
+    torso.className = "torso"
     torso.innerText = `Torso: ${chimera.torso}`
 
     let legs = document.createElement('p')
+    legs.className = "legs"
     legs.innerText = `Legs: ${chimera.legs}`
-    
-    
+    if (chimera.wings === ""){chimera.wings = "none"}
     let wings = document.createElement('p')
+    wings.className = "wings"
     wings.innerText = `Wings: ${chimera.wings}`
     
     let tail = document.createElement('p')
+    tail.className = "tail"
     tail.innerText = `Tail: ${chimera.tail}`
 
     let editButton = document.createElement('button')
     editButton.innerText = "Edit"
     editButton.id = `edit-${chimera.id}`
-    editButton.addEventListener("click", editEntry())
+    editButton.addEventListener("click", (event) => editEntry(event))
 
     let deleteButton = document.createElement('button')
     deleteButton.innerText = "Delete"
@@ -285,10 +322,73 @@ fetch(BASEURL+ '/chimeras' + `/${chimeraId}`, {
     div.parentNode.removeChild(div)
 }
 
-function editEntry(){
-
+function editEntry(event){
+    let parent = event.target.parentNode
+    let parentId = parent.id.split("-")[1]
+    let array =parent.innerText.split("\n").filter(element => element !== "")
+    array.pop()
+    let secondArray = array.map(element => element.split(": "))
+    let keys = secondArray.map(element => element[0])
+    let values = secondArray.map(element => element[1])
+    
+    let chimera= new Chimera(values[0], values[1], values[2], values[5], values[4], values [3])
+    let postId = event.target.id
+    let id = postId.split("-")
+    let form = submitForm()
+    let trait
+        let nameBox= form.querySelector("#chimera-name")
+        nameBox.value = chimera.name
+        let headBox= form.querySelector("#chimera-head.animal-select")
+        trait = addOption(chimera.head)
+        clearAndAdd(headBox, trait)
+        let torsoBox= form.querySelector("#chimera-torso.animal-select")
+        trait = addOption(chimera.torso)
+        clearAndAdd(torsoBox, trait)
+        let tailBox= form.querySelector("#chimera-tail.animal-select")
+        trait = addOption(chimera.tail)
+        clearAndAdd(tailBox, trait)
+        let wingsBox= form.querySelector("#chimera-wings.animal-select")
+        trait = addOption(chimera.wings)
+        clearAndAdd(wingsBox, trait)
+        let legsBox= form.querySelector("#chimera-legs.animal-select")
+        trait = addOption(chimera.legs)
+        clearAndAdd(legsBox, trait)
+    window.location = 'index.html#formJump';
+    form.id = parentId
+    submit().value = "Edit"
+    editing = true
 }
 
+function editChimeraCard(chimera, card){
+let name =card.querySelector(".name")
+name.innerText= `Name: ${chimera.name}`
+let head =card.querySelector(".head")
+head.innerText= `Head: ${chimera.head}`
+let torso =card.querySelector(".torso")
+torso.innerText= `Torso: ${chimera.torso}`
+let wings =card.querySelector(".wings")
+wings.innerText= `Wings: ${chimera.wings}`
+let tail =card.querySelector(".tail")
+tail.innerText= `Tail: ${chimera.tail}`
+let legs =card.querySelector(".legs")
+legs.innerText= `Legs: ${chimera.legs}`
+return card
+}
+
+function addOption(trait){
+ let option = document.createElement('option')
+ option.innerText = trait
+ option.value = trait
+ return option
+}
+
+function clearAndAdd(box, trait){
+    while (box.firstChild) {
+        box.removeChild(box.firstChild)
+    }
+
+    return box.appendChild(trait)
+}
 function randomButtoniser(){
     let buttons = randomButton()
     for (i=0; i<buttons.length; i++){

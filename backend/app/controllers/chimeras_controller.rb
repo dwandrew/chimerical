@@ -19,58 +19,23 @@ class ChimerasController < ApplicationController
   if @chimera.save
     if @chimera.head != "none"
       animal = Animal.find_by_name(@chimera.head)
-      if !animal.chimeras.include?(@chimera)
-      animal.chimeras << @chimera
-      animal.save
-      end
-      if !@chimera.animals.include?(animal)
-        @chimera.animals << animal
-        @chimera.save
-      end
+      set_associations(animal, @chimera)
     end  
-    if @chimera.torso != "none"
+    if @chimera.torso != "none" 
       animal = Animal.find_by_name(@chimera.torso)
-      if !animal.chimeras.include?(@chimera)
-        animal.chimeras << @chimera
-        animal.save
-        end
-      if !@chimera.animals.include?(animal)
-      @chimera.animals << animal
-      @chimera.save
-      end
+      set_associations(animal, @chimera)
     end  
     if @chimera.legs != "none"
       animal = Animal.find_by_name(@chimera.legs)
-      if !animal.chimeras.include?(@chimera)
-        animal.chimeras << @chimera
-        animal.save
-        end
-      if !@chimera.animals.include?(animal)
-        @chimera.animals << animal
-        @chimera.save
-      end
+      set_associations(animal, @chimera)
     end  
-    if @chimera.wings != "none"
+    if @chimera.wings != "none" 
       animal = Animal.find_by_name(@chimera.wings)
-      if !animal.chimeras.include?(@chimera)
-        animal.chimeras << @chimera
-        animal.save
-        end
-      if !@chimera.animals.include?(animal)
-        @chimera.animals << animal
-        @chimera.save
-      end
+      set_associations(animal, @chimera)
     end  
-    if @chimera.tail != "none"
+    if @chimera.tail != "none" 
       animal = Animal.find_by_name(@chimera.tail)
-      if !animal.chimeras.include?(@chimera)
-        animal.chimeras << @chimera
-        animal.save
-        end
-      if !@chimera.animals.include?(animal)
-        @chimera.animals << animal
-        @chimera.save
-      end
+      set_associations(animal, @chimera)
       
     end  
       render json: @chimera, status: :created, location: @chimera
@@ -82,6 +47,27 @@ class ChimerasController < ApplicationController
   # PATCH/PUT /chimeras/1
   def update
     if @chimera.update(chimera_params)
+      @chimera.animals = []
+      if @chimera.head != "none"
+        animal = Animal.find_by_name(@chimera.head)
+        set_associations(animal, @chimera)
+      end  
+      if @chimera.torso != "none"
+        animal = Animal.find_by_name(@chimera.torso)
+        set_associations(animal, @chimera)
+      end  
+      if @chimera.legs != "none"
+        animal = Animal.find_by_name(@chimera.legs)
+        set_associations(animal, @chimera)
+      end  
+      if @chimera.wings != "none"
+        animal = Animal.find_by_name(@chimera.wings)
+        set_associations(animal, @chimera)
+      end  
+      if @chimera.tail != "none"
+        animal = Animal.find_by_name(@chimera.tail)
+        set_associations(animal, @chimera)
+      end  
       render json: @chimera
     else
       render json: @chimera.errors, status: :unprocessable_entity
@@ -102,5 +88,18 @@ class ChimerasController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def chimera_params
       params.require(:chimera).permit(:name, :wings, :legs, :tail, :torso, :head)
+    end
+
+    def set_associations(animal, chimera)
+      if animal != nil
+      if !animal.chimeras.include?(chimera)
+        animal.chimeras << chimera
+        animal.save
+        end
+      if !chimera.animals.include?(animal)
+        chimera.animals << animal
+        chimera.save
+      end
+      end
     end
 end
