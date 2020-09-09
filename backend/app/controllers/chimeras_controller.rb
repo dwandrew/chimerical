@@ -5,7 +5,7 @@ class ChimerasController < ApplicationController
   def index
     @chimeras = Chimera.all
     @chimeras = @chimeras.sort_by{|e| e.name}
-    render json: @chimeras
+    render json: @chimeras, include: [:habitat]
   end
 
   # GET /chimeras/1
@@ -15,7 +15,8 @@ class ChimerasController < ApplicationController
 
   # POST /chimeras
   def create
-    @chimera = Chimera.new(chimera_params)
+    habitat = find_habitat(params[:chimera][:habitat])
+    @chimera = habitat.chimeras.build(chimera_params)
   if @chimera.save
     if @chimera.head != "none"
       animal = Animal.find_by_name(@chimera.head)
@@ -88,6 +89,10 @@ class ChimerasController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def chimera_params
       params.require(:chimera).permit(:name, :wings, :legs, :tail, :torso, :head)
+    end
+
+    def find_habitat(name)
+      Habitat.find_by_name(name)
     end
 
     def set_associations(animal, chimera)

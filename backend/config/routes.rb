@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :habitats
   resources :blenders
   resources :chimeras
   resources :animals

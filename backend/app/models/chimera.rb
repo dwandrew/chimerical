@@ -6,6 +6,7 @@ class Chimera < ApplicationRecord
     message: "Head Required" }
     validates :torso, presence: true,  exclusion: { in: %w(none),
     message: "Torso Required" }
+    belongs_to :habitat
 
 
     # scope :top_ten, -> {self.order(warband_rating: :desc)}

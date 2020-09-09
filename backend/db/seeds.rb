@@ -242,8 +242,22 @@
 
 
         
-    Chimera.create(name: "Griper", wings: "Albatross", legs: "Yak", tail: "Anteater", torso: "Alligator", head: "Tapir")
-    Blender.create(animal_id: 2, chimera_id:1)
-    Blender.create(animal_id: 4, chimera_id:1)
-    Blender.create(animal_id: 6, chimera_id:1)
-    Blender.create(animal_id: 3, chimera_id:1)
+    # Chimera.create(name: "Griper", wings: "Albatross", legs: "Yak", tail: "Anteater", torso: "Alligator", head: "Tapir")
+    # Blender.create(animal_id: 2, chimera_id:1)
+    # Blender.create(animal_id: 4, chimera_id:1)
+    # Blender.create(animal_id: 6, chimera_id:1)
+    # Blender.create(animal_id: 3, chimera_id:1)
+    # Need to add habitat
+
+
+    # Habitat.create(name: , temperature: , traits: )
+    Habitat.create(name: "Forest", temperature: "Hot, Cold, Temparate", traits: "Climber, Camouflage, Hibernating, Antlers, Intelligent")
+    Habitat.create(name: "Tundra", temperature: "Cold" , traits: "Fat Reserves, Thick Coat, Hibernating, Burrower, Antlers")
+    Habitat.create(name: "Polar", temperature: "Cold", traits: "Fat Reserves, Thick Coat, Swimmer, Hibernating")
+    Habitat.create(name: "Desert", temperature: "Hot, Cold", traits: "Broad Feet, Water Reserves, Burrower, Large Ears, Camouflage")
+    Habitat.create(name: "Plains", temperature: "Temperate", traits: "Swift Runner, Burrower, Stamina, Camouflage, Migratory, Intelligent")
+    Habitat.create(name: "Mountains", temperature: "Cold, Temperate", traits: "Climber, Hibernating, Antlers, Burrower, Thick Coat")
+    Habitat.create(name: "Coast", temperature: "Hot, Cold, Temparate", traits: "Aquatic, Swimmer, Camouflage, Webbed Feet")
+    Habitat.create(name: "River", temperature: "Cold, Temperate", traits: "Aquatic, Swimmer, Intelligent, Webbed Feet, Migratory")
+    Habitat.create(name: "Lake", temperature: "Cold, Temperate", traits: "Aquatic, Swimmer, Webbed Feet")
+    Habitat.create(name: "Ocean", temperature: "Cold, Temperate", traits: "Aquatic, Swimmer, Webbed Feet, Bioluminescent, Camouflage, Migratory")

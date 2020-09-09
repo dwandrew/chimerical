@@ -3,6 +3,7 @@ const ALPHABETARRAY = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","
 
 document.addEventListener("DOMContentLoaded", (event) => {
     populateLetterFilters(letterFilters(), ALPHABETARRAY);
+    populateHabitatOptions(habitatSelect())
     postingChimera()
     populateChimeraList()
     randomButtoniser()
@@ -22,6 +23,7 @@ let letterFilters = () => document.getElementsByClassName("letter-filter")
 let chimeraDiv = () => document.getElementById("chimera-list")
 let animalSelect = () => document.getElementsByClassName("animal-select")
 let randomButton = () => document.getElementsByClassName('randomiser-button')
+let habitatSelect = () => document.getElementById("chimera-habitat")
 let submitForm = () => document.getElementsByClassName("create-chimera")[0]
 
 function populateSelectOptions(list){
@@ -50,6 +52,23 @@ fetch(BASEURL + '/animals')
         break;
     }
 })
+
+}
+
+function populateHabitatOptions(select){
+
+fetch(BASEURL + '/habitats')
+.then(resp => resp.json())
+.then(habitats => {
+habitats.forEach(habitat => {
+let option = document.createElement('option')
+option.innerText = habitat.name
+option.id = `habitatId-${habitat.id}`
+option.value = habitat.name
+select.appendChild(option)
+})
+})
+
 }
 
 
@@ -176,7 +195,8 @@ function postingChimera(){
               torso: torso().value,
               wings: wings().value,
               legs: legs().value,
-              tail: tail().value
+              tail: tail().value,
+              habitat: habitatSelect().value
             }
         }
         if (!editing){
@@ -197,6 +217,7 @@ function postingChimera(){
         chimeraDiv().appendChild(card)
         resetLetterFilters()
         resetAnimalSelect()
+        populateHabitatOptions(habitatSelect())
         name().value = ""
             }
         )
@@ -294,6 +315,19 @@ function makeChimeraCard(chimera){
     tail.className = "tail"
     tail.innerText = `Tail: ${chimera.tail}`
 
+    let habitatDiv = document.createElement('div')
+    habitatDiv.className = `chimera-habitat-${chimera.habitat.name}`
+    let hName = document.createElement('p')
+    hName.innerText = `Habitat: ${chimera.habitat.name}`
+    let hTemp = document.createElement('p')
+    hTemp.innerText = `Possible temperatures: ${chimera.habitat.temperature}`
+    let hTraits = document.createElement('p')
+    hTraits.innerText = `Suggested traits: ${chimera.habitat.traits}`
+    habitatDiv.appendChild(hName)
+    habitatDiv.appendChild(hTemp)
+    habitatDiv.appendChild(hTraits)
+
+
     let editButton = document.createElement('button')
     editButton.innerText = "Edit"
     editButton.id = `edit-${chimera.id}`
@@ -310,6 +344,7 @@ function makeChimeraCard(chimera){
     chimeraCard.appendChild(legs)
     chimeraCard.appendChild(wings)
     chimeraCard.appendChild(tail)
+    chimeraCard.appendChild(habitatDiv)
     chimeraCard.appendChild(editButton)
     chimeraCard.appendChild(deleteButton)
     return chimeraCard
