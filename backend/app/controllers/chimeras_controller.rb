@@ -4,7 +4,7 @@ class ChimerasController < ApplicationController
   # GET /chimeras
   def index
     @chimeras = Chimera.all
-
+    @chimeras = @chimeras.sort_by{|e| e.name}
     render json: @chimeras
   end
 
