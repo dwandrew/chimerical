@@ -236,12 +236,13 @@
     Animal.create(name:"Yap monarch", wings: true, legs: true, tail: true)
     Animal.create(name: "Yak", wings: false, legs: true, tail: true)
     Animal.create(name: "Zebra", wings: false, legs: true, tail: true)
+    Animal.create(name: "Zebra Finch", wings: true, legs: true, tail: true)
     Animal.create(name: "Zorilla", wings: false, legs: true, tail: true)
     
 
 
         
-    Chimera.create(name: "Boris", wings: "Albatross", legs: "Alligator", tail: "Anteater", torso: "Alligator", head: "Alpaca")
+    Chimera.create(name: "Griper", wings: "Albatross", legs: "Yak", tail: "Anteater", torso: "Alligator", head: "Tapir")
     Blender.create(animal_id: 2, chimera_id:1)
     Blender.create(animal_id: 4, chimera_id:1)
     Blender.create(animal_id: 6, chimera_id:1)

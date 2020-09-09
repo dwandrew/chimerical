@@ -202,7 +202,7 @@ function postingChimera(){
         )
         }
         else {
-           let chimeraId =  event.target.parentNode.id
+           let chimeraId =  event.target.parentNode.parentElement.id
            fetch(BASEURL + '/chimeras' +`/${chimeraId}`, {
                method: "PATCH",
                headers: {
@@ -217,6 +217,9 @@ function postingChimera(){
                 let div = document.getElementById(`chimera-${chimera.id}`)
                 editChimeraCard(chimera, div)
                 editing = false
+                resetLetterFilters()
+                resetAnimalSelect()
+                name().value = ""
                 button.value = "Submit"
               }
            )

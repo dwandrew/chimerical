@@ -53,7 +53,7 @@ span{
 .chimera-list{
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .chimera-card{
@@ -71,4 +71,13 @@ span{
     display: block;
     margin: auto;
     margin-top: 10px;
+}
+
+button, #chimera-submit {
+    background-color: lightblue;
+    border-color: rebeccapurple;
+    border-style: solid;
+    font-family: Verdana, Geneva, Tahoma, serif;
+    border-radius: 5px;
+
 }
