@@ -1,5 +1,5 @@
 body{
-    background-image: url(https://www.woodlandtrust.org.uk/media/2270/path-cadora-woods-wt-cadora-woods-77-rob-read.jpg);
+    background-image: url("./images/forest\ background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     
@@ -112,6 +112,48 @@ button, #chimera-submit {
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/plains.jpg");
+}
+.chimera-habitat-Ocean{
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/ocean.jpg");
+}
+.chimera-habitat-River{
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/river.jpg");
+}
+.chimera-habitat-Polar{
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/polar.jpg");
+}
+.chimera-habitat-Tundra{
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/tundra.jpg");
+}
+.chimera-habitat-Forest {
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/forest.jpg");
+}
+.chimera-habitat-Lake{
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/lake.jpg");
+}
+.chimera-habitat-Coast{
+    background-size: 100% 100%;
+    opacity: 0.8;
+    background-repeat: no-repeat;
+    background-image: url("./images/coast.jpg");
 }
 
 
