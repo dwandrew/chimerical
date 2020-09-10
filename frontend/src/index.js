@@ -282,75 +282,78 @@ function populateChimeraList(){
     fetch(BASEURL+ '/chimeras')
     .then(resp => resp.json())
     .then(chimerasList => {
-        console.log(chimerasList)
-        chimerasList.forEach(chimera => {
-           let chimeraCard = makeChimeraCard(chimera)
-           chimeraDiv().appendChild(chimeraCard)
-        })
+        Chimera.createChimeras(chimerasList)
+        Chimera.renderChimera()
+        // console.log(chimerasList)
+        // chimerasList.forEach(chimera => {
+        //     console.log(chimera)
+        //     Chimera.
+        //    chimera.display()
+        // })
     })
 
 }
 
-function makeChimeraCard(chimera){
-    let chimeraCard = document.createElement("div")
-    chimeraCard.className = "chimera-card"
-    chimeraCard.id = `chimera-${chimera.id}`
-    let name = document.createElement('h2')
-    name.className = "name"
-    name.innerText = `Name: ${chimera.name}`
-    let head = document.createElement('p')
-    head.className = "head"
-    head.innerText = `Head: ${chimera.head}`
-    let torso = document.createElement('p')
-    torso.className = "torso"
-    torso.innerText = `Torso: ${chimera.torso}`
+// function makeChimeraCard(chimera){
+//     let chimeraCard = document.createElement("div")
+//     chimeraCard.className = "chimera-card"
+//     chimeraCard.id = `chimera-${chimera.id}`
+//     let name = document.createElement('h2')
+//     name.className = "name"
+//     name.innerText = `Name: ${chimera.name}`
+//     let head = document.createElement('p')
+//     head.className = "head"
+//     head.innerText = `Head: ${chimera.head}`
+//     let torso = document.createElement('p')
+//     torso.className = "torso"
+//     torso.innerText = `Torso: ${chimera.torso}`
 
-    let legs = document.createElement('p')
-    legs.className = "legs"
-    legs.innerText = `Legs: ${chimera.legs}`
-    if (chimera.wings === ""){chimera.wings = "none"}
-    let wings = document.createElement('p')
-    wings.className = "wings"
-    wings.innerText = `Wings: ${chimera.wings}`
+//     let legs = document.createElement('p')
+//     legs.className = "legs"
+//     legs.innerText = `Legs: ${chimera.legs}`
+//     if (chimera.wings === ""){chimera.wings = "none"}
+//     let wings = document.createElement('p')
+//     wings.className = "wings"
+//     wings.innerText = `Wings: ${chimera.wings}`
     
-    let tail = document.createElement('p')
-    tail.className = "tail"
-    tail.innerText = `Tail: ${chimera.tail}`
+//     let tail = document.createElement('p')
+//     tail.className = "tail"
+//     tail.innerText = `Tail: ${chimera.tail}`
 
-    let habitatDiv = document.createElement('div')
-    habitatDiv.className = `chimera-habitat-${chimera.habitat.name}`
-    let hName = document.createElement('p')
-    hName.innerText = `Habitat: ${chimera.habitat.name}`
-    let hTemp = document.createElement('p')
-    hTemp.innerText = `Possible temperatures: ${chimera.habitat.temperature}`
-    let hTraits = document.createElement('p')
-    hTraits.innerText = `Suggested traits: ${chimera.habitat.traits}`
-    habitatDiv.appendChild(hName)
-    habitatDiv.appendChild(hTemp)
-    habitatDiv.appendChild(hTraits)
+//     let habitatDiv = document.createElement('div')
+//     habitatDiv.className = `chimera-habitat-${chimera.habitat.name}`
+//     let hName = document.createElement('p')
+//     hName.innerText = `Habitat: ${chimera.habitat.name}`
+//     let hTemp = document.createElement('p')
+//     hTemp.innerText = `Possible temperatures: ${chimera.habitat.temperature}`
+//     let hTraits = document.createElement('p')
+//     hTraits.innerText = `Suggested traits: ${chimera.habitat.traits}`
+//     habitatDiv.appendChild(hName)
+//     habitatDiv.appendChild(hTemp)
+//     habitatDiv.appendChild(hTraits)
 
 
-    let editButton = document.createElement('button')
-    editButton.innerText = "Edit"
-    editButton.id = `edit-${chimera.id}`
-    editButton.addEventListener("click", (event) => editEntry(event))
+//     let editButton = document.createElement('button')
+//     editButton.innerText = "Edit"
+//     editButton.id = `edit-${chimera.id}`
+//     editButton.addEventListener("click", (event) => editEntry(event))
 
-    let deleteButton = document.createElement('button')
-    deleteButton.innerText = "Delete"
-    deleteButton.id = `delete-${chimera.id}`
-    deleteButton.addEventListener("click", (event) => deleteEntry(event))
+//     let deleteButton = document.createElement('button')
+//     deleteButton.innerText = "Delete"
+//     deleteButton.id = `delete-${chimera.id}`
+//     deleteButton.addEventListener("click", (event) => deleteEntry(event))
    
-    chimeraCard.appendChild(name)
-    chimeraCard.appendChild(head)
-    chimeraCard.appendChild(torso)
-    chimeraCard.appendChild(legs)
-    chimeraCard.appendChild(wings)
-    chimeraCard.appendChild(tail)
-    chimeraCard.appendChild(habitatDiv)
-    chimeraCard.appendChild(editButton)
-    chimeraCard.appendChild(deleteButton)
-    return chimeraCard
-}
+//     chimeraCard.appendChild(name)
+//     chimeraCard.appendChild(head)
+//     chimeraCard.appendChild(torso)
+//     chimeraCard.appendChild(legs)
+//     chimeraCard.appendChild(wings)
+//     chimeraCard.appendChild(tail)
+//     chimeraCard.appendChild(habitatDiv)
+//     chimeraCard.appendChild(editButton)
+//     chimeraCard.appendChild(deleteButton)
+//     return chimeraCard
+// }
 
 function deleteEntry(){
 let postId = event.target.id
@@ -510,19 +513,19 @@ return animalSelector.appendChild(option)
 // ------------------------------------
 // Class definitions
 
-function setNewChimera(chimera){
-    let newChimera = new Chimera(chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs);
-    return newChimera
-}
+// function setNewChimera(chimera){
+//     let newChimera = new Chimera(chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs);
+//     return newChimera
+// }
 
-class Chimera{
-constructor(name, head, torso, tail, wings, legs){
-    this.name = name;
-    this.head = head;
-    this.torso = torso;
-    this.tail = tail;
-    this.wings = wings;
-    this.legs = legs;
-}
+// class Chimera{
+// constructor(name, head, torso, tail, wings, legs){
+//     this.name = name;
+//     this.head = head;
+//     this.torso = torso;
+//     this.tail = tail;
+//     this.wings = wings;
+//     this.legs = legs;
+// }
 
-}
+// }
