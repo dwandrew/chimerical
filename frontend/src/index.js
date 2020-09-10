@@ -4,8 +4,8 @@ const ALPHABETARRAY = [" ","A","B","C","D","E","F","G","H","I","J","K","L","M","
 document.addEventListener("DOMContentLoaded", (event) => {
     populateLetterFilters(letterFilters(), ALPHABETARRAY);
     populateHabitatOptions(habitatSelect())
-    postingChimera()
-    populateChimeraList()
+    Chimera.postingChimera()
+    Chimera.populateChimeraList()
     randomButtoniser()
     randomHabitat()
 }
@@ -185,71 +185,71 @@ function addNoneOption(list){
     list.add(noneOption)
 }
 
-function postingChimera(){
-    let button =submit()
-    button.addEventListener("click", (event) => {
-        event.preventDefault();
-        const strongParams = {
-            chimera: {
-              name: name().value,
-              head: head().value,
-              torso: torso().value,
-              wings: wings().value,
-              legs: legs().value,
-              tail: tail().value,
-              habitat: habitatSelect().value
-            }
-        }
-        if (!editing){
-        fetch(BASEURL+ "/chimeras", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(strongParams)
+// function postingChimera(){
+//     let button =submit()
+//     button.addEventListener("click", (event) => {
+//         event.preventDefault();
+//         const strongParams = {
+//             chimera: {
+//               name: name().value,
+//               head: head().value,
+//               torso: torso().value,
+//               wings: wings().value,
+//               legs: legs().value,
+//               tail: tail().value,
+//               habitat: habitatSelect().value
+//             }
+//         }
+//         if (!editing){
+//         fetch(BASEURL+ "/chimeras", {
+//             method: "POST",
+//             headers: {
+//                 "Accept": "application/json",
+//                 "Content-Type": "application/json"
+//               },
+//               body: JSON.stringify(strongParams)
 
-        })
-        .then(resp => resp.json())
-        .then(chimera => {
-            console.log("response got")
-        let newChimera = setNewChimera(chimera)
-        let card = makeChimeraCard(chimera)
-        console.log(card)
-        chimeraDiv().appendChild(card)
-        resetLetterFilters()
-        resetAnimalSelect()
-        populateHabitatOptions(habitatSelect())
-        name().value = ""
-            }
-        )
-        }
-        else {
-           let chimeraId =  event.target.parentNode.parentElement.id
-           fetch(BASEURL + '/chimeras' +`/${chimeraId}`, {
-               method: "PATCH",
-               headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify(strongParams)
-                })
-              .then(resp => resp.json())
-              .then(chimera => {
-                let newChimera = setNewChimera(chimera)
-                let div = document.getElementById(`chimera-${chimera.id}`)
-                editChimeraCard(chimera, div)
-                editing = false
-                resetLetterFilters()
-                resetAnimalSelect()
-                name().value = ""
-                button.value = "Submit"
-              }
-           )
-        }
-    }
+//         })
+//         .then(resp => resp.json())
+//         .then(chimera => {
+//             console.log("response got")
+//         let newChimera = setNewChimera(chimera)
+//         let card = makeChimeraCard(chimera)
+//         console.log(card)
+//         chimeraDiv().appendChild(card)
+//         resetLetterFilters()
+//         resetAnimalSelect()
+//         populateHabitatOptions(habitatSelect())
+//         name().value = ""
+//             }
+//         )
+//         }
+//         else {
+//            let chimeraId =  event.target.parentNode.parentElement.id
+//            fetch(BASEURL + '/chimeras' +`/${chimeraId}`, {
+//                method: "PATCH",
+//                headers: {
+//                 "Accept": "application/json",
+//                 "Content-Type": "application/json"
+//               },
+//               body: JSON.stringify(strongParams)
+//                 })
+//               .then(resp => resp.json())
+//               .then(chimera => {
+//                 let newChimera = setNewChimera(chimera)
+//                 let div = document.getElementById(`chimera-${chimera.id}`)
+//                 editChimeraCard(chimera, div)
+//                 editing = false
+//                 resetLetterFilters()
+//                 resetAnimalSelect()
+//                 name().value = ""
+//                 button.value = "Submit"
+//               }
+//            )
+//         }
+//     }
     
-    )
+//     )
     
 
 
@@ -257,7 +257,7 @@ function postingChimera(){
         
 
         
-}
+// }
 
 
 function resetLetterFilters(){
@@ -278,21 +278,15 @@ function resetAnimalSelect(){
 }
 
 
-function populateChimeraList(){
-    fetch(BASEURL+ '/chimeras')
-    .then(resp => resp.json())
-    .then(chimerasList => {
-        Chimera.createChimeras(chimerasList)
-        Chimera.renderChimera()
-        // console.log(chimerasList)
-        // chimerasList.forEach(chimera => {
-        //     console.log(chimera)
-        //     Chimera.
-        //    chimera.display()
-        // })
-    })
+// function populateChimeraList(){
+//     fetch(BASEURL+ '/chimeras')
+//     .then(resp => resp.json())
+//     .then(chimerasList => {
+//         Chimera.createChimeras(chimerasList)
+//         Chimera.renderChimera()
+//     })
 
-}
+// }
 
 // function makeChimeraCard(chimera){
 //     let chimeraCard = document.createElement("div")
@@ -365,58 +359,58 @@ fetch(BASEURL+ '/chimeras' + `/${chimeraId}`, {
     div.parentNode.removeChild(div)
 }
 
-function editEntry(event){
-    let parent = event.target.parentNode
-    let parentId = parent.id.split("-")[1]
-    let array =parent.innerText.split("\n").filter(element => element !== "")
-    array.pop()
-    let secondArray = array.map(element => element.split(": "))
-    let keys = secondArray.map(element => element[0])
-    let values = secondArray.map(element => element[1])
+// function editEntry(event){
+//     let parent = event.target.parentNode
+//     let parentId = parent.id.split("-")[1]
+//     let array =parent.innerText.split("\n").filter(element => element !== "")
+//     array.pop()
+//     let secondArray = array.map(element => element.split(": "))
+//     let keys = secondArray.map(element => element[0])
+//     let values = secondArray.map(element => element[1])
     
-    let chimera= new Chimera(values[0], values[1], values[2], values[5], values[4], values [3])
-    let postId = event.target.id
-    let id = postId.split("-")
-    let form = submitForm()
-    let trait
-        let nameBox= form.querySelector("#chimera-name")
-        nameBox.value = chimera.name
-        let headBox= form.querySelector("#chimera-head.animal-select")
-        trait = addOption(chimera.head)
-        clearAndAdd(headBox, trait)
-        let torsoBox= form.querySelector("#chimera-torso.animal-select")
-        trait = addOption(chimera.torso)
-        clearAndAdd(torsoBox, trait)
-        let tailBox= form.querySelector("#chimera-tail.animal-select")
-        trait = addOption(chimera.tail)
-        clearAndAdd(tailBox, trait)
-        let wingsBox= form.querySelector("#chimera-wings.animal-select")
-        trait = addOption(chimera.wings)
-        clearAndAdd(wingsBox, trait)
-        let legsBox= form.querySelector("#chimera-legs.animal-select")
-        trait = addOption(chimera.legs)
-        clearAndAdd(legsBox, trait)
-    window.location = 'index.html#formJump';
-    form.id = parentId
-    submit().value = "Edit"
-    editing = true
-}
+//     let chimera= new Chimera(values[0], values[1], values[2], values[5], values[4], values [3])
+//     let postId = event.target.id
+//     let id = postId.split("-")
+//     let form = submitForm()
+//     let trait
+//         let nameBox= form.querySelector("#chimera-name")
+//         nameBox.value = chimera.name
+//         let headBox= form.querySelector("#chimera-head.animal-select")
+//         trait = addOption(chimera.head)
+//         clearAndAdd(headBox, trait)
+//         let torsoBox= form.querySelector("#chimera-torso.animal-select")
+//         trait = addOption(chimera.torso)
+//         clearAndAdd(torsoBox, trait)
+//         let tailBox= form.querySelector("#chimera-tail.animal-select")
+//         trait = addOption(chimera.tail)
+//         clearAndAdd(tailBox, trait)
+//         let wingsBox= form.querySelector("#chimera-wings.animal-select")
+//         trait = addOption(chimera.wings)
+//         clearAndAdd(wingsBox, trait)
+//         let legsBox= form.querySelector("#chimera-legs.animal-select")
+//         trait = addOption(chimera.legs)
+//         clearAndAdd(legsBox, trait)
+//     window.location = 'index.html#formJump';
+//     form.id = parentId
+//     submit().value = "Edit"
+//     editing = true
+// }
 
-function editChimeraCard(chimera, card){
-let name =card.querySelector(".name")
-name.innerText= `Name: ${chimera.name}`
-let head =card.querySelector(".head")
-head.innerText= `Head: ${chimera.head}`
-let torso =card.querySelector(".torso")
-torso.innerText= `Torso: ${chimera.torso}`
-let wings =card.querySelector(".wings")
-wings.innerText= `Wings: ${chimera.wings}`
-let tail =card.querySelector(".tail")
-tail.innerText= `Tail: ${chimera.tail}`
-let legs =card.querySelector(".legs")
-legs.innerText= `Legs: ${chimera.legs}`
-return card
-}
+// function editChimeraCard(chimera, card){
+// let name =card.querySelector(".name")
+// name.innerText= `Name: ${chimera.name}`
+// let head =card.querySelector(".head")
+// head.innerText= `Head: ${chimera.head}`
+// let torso =card.querySelector(".torso")
+// torso.innerText= `Torso: ${chimera.torso}`
+// let wings =card.querySelector(".wings")
+// wings.innerText= `Wings: ${chimera.wings}`
+// let tail =card.querySelector(".tail")
+// tail.innerText= `Tail: ${chimera.tail}`
+// let legs =card.querySelector(".legs")
+// legs.innerText= `Legs: ${chimera.legs}`
+// return card
+// }
 
 function addOption(trait){
  let option = document.createElement('option')

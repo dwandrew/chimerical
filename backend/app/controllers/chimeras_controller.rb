@@ -10,7 +10,7 @@ class ChimerasController < ApplicationController
 
   # GET /chimeras/1
   def show
-    render json: @chimera
+    render json: @chimera, include: [:habitat]
   end
 
   # POST /chimeras
@@ -69,7 +69,7 @@ class ChimerasController < ApplicationController
         animal = Animal.find_by_name(@chimera.tail)
         set_associations(animal, @chimera)
       end  
-      render json: @chimera
+      render json: @chimera, include: [:habitat]
     else
       render json: @chimera.errors, status: :unprocessable_entity
     end

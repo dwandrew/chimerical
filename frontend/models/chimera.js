@@ -3,7 +3,8 @@
 class Chimera{
     static all = []
 
-constructor(name, head, torso, tail, wings, legs, habitat){
+constructor(id, name, head, torso, tail, wings, legs, habitat){
+    this.id = id
     this.name = name;
     this.head = head;
     this.torso = torso;
@@ -14,12 +15,13 @@ constructor(name, head, torso, tail, wings, legs, habitat){
 };
 
 static createChimeras(chimerasData){
-    chimerasData.forEach(chimera => Chimera.create(chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs, chimera.habitat))
+    chimerasData.forEach(chimera => Chimera.create(chimera.id, chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs, chimera.habitat))
 }
 
-static create(name, head, torso, tail, wings, legs, habitat){
- let chimera =  new Chimera(name, head, torso, tail, wings, legs, habitat)
+static create(id, name, head, torso, tail, wings, legs, habitat){
+ let chimera =  new Chimera(id, name, head, torso, tail, wings, legs, habitat)
  Chimera.all.push(chimera)
+ return chimera
 }
 
 static renderChimera(){
@@ -74,7 +76,7 @@ makeChimeraCard(){
     let editButton = document.createElement('button')
     editButton.innerText = "Edit"
     editButton.id = `edit-${this.id}`
-    editButton.addEventListener("click", (event) => editEntry(event))
+    editButton.addEventListener("click", (event) => this.editEntry(event))
 
     let deleteButton = document.createElement('button')
     deleteButton.innerText = "Delete"
@@ -93,79 +95,153 @@ makeChimeraCard(){
     return chimeraCard
 }
 
-//Needs to get working for class
-// postingChimera(){
-//     let button =submit()
-//     button.addEventListener("click", (event) => {
-//         event.preventDefault();
-//         const strongParams = {
-//             chimera: {
-//               name: name().value,
-//               head: head().value,
-//               torso: torso().value,
-//               wings: wings().value,
-//               legs: legs().value,
-//               tail: tail().value,
-//               habitat: habitatSelect().value
-//             }
-//         }
-//         if (!editing){
-//         fetch(BASEURL+ "/chimeras", {
-//             method: "POST",
-//             headers: {
-//                 "Accept": "application/json",
-//                 "Content-Type": "application/json"
-//               },
-//               body: JSON.stringify(strongParams)
+static populateChimeraList(){
+    fetch(BASEURL+ '/chimeras')
+    .then(resp => resp.json())
+    .then(chimerasList => {
+        Chimera.createChimeras(chimerasList)
+        Chimera.renderChimera()
+    })
 
-//         })
-//         .then(resp => resp.json())
-//         .then(chimera => {
-//          
-//         let newChimera = Chimera.create(chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs, chimera.habitat)
-//         let card = makeChimeraCard(chimera)
-//         chimeraDiv().appendChild(card)
-//         resetLetterFilters()
-//         resetAnimalSelect()
-//         populateHabitatOptions(habitatSelect())
-//         name().value = ""
-//             }
-//         )
-//         }
-//         else {
-//            let chimeraId =  event.target.parentNode.parentElement.id
-//            fetch(BASEURL + '/chimeras' +`/${chimeraId}`, {
-//                method: "PATCH",
-//                headers: {
-//                 "Accept": "application/json",
-//                 "Content-Type": "application/json"
-//               },
-//               body: JSON.stringify(strongParams)
-//                 })
-//               .then(resp => resp.json())
-//               .then(chimera => {
-//                 let newChimera = setNewChimera(chimera)
-//                 let div = document.getElementById(`chimera-${chimera.id}`)
-//                 editChimeraCard(chimera, div)
-//                 editing = false
-//                 resetLetterFilters()
-//                 resetAnimalSelect()
-//                 name().value = ""
-//                 button.value = "Submit"
-//               }
-//            )
-//         }
-//     }
-    
-//     )
-    
+}
 
+editEntry(event){
+    let parent = event.target.parentNode
+    let parentId = parent.id.split("-")[1]
+    let array =parent.innerText.split("\n").filter(element => element !== "")
+    array.pop()
+    let form = submitForm()
+    let trait
 
-  
+        let nameBox= name()
+        nameBox.value = this.name
+
+        let headBox= head()
+        trait = addOption(this.head)
+        clearAndAdd(headBox, trait)
+
+        let torsoBox= torso()
+        trait = addOption(this.torso)
+        clearAndAdd(torsoBox, trait)
+
+        let tailBox= tail()
+        trait = addOption(this.tail)
+        clearAndAdd(tailBox, trait)
+
+        let wingsBox= wings()
+        trait = addOption(this.wings)
+        clearAndAdd(wingsBox, trait)
+
+        let legsBox= legs()
+        trait = addOption(this.legs)
+        clearAndAdd(legsBox, trait)
+
+        trait = addOption(this.habitat.name)
+        clearAndAdd(habitatSelect(), trait)
+
+    window.location = 'index.html#formJump';
+    form.id = parentId
+    submit().value = "Edit"
+    editing = true
+}
+
+updateChimera(chimeraUpdateData){
+    this.id = chimeraUpdateData.id
+    this.name = chimeraUpdateData.name;
+    this.head = chimeraUpdateData.head;
+    this.torso = chimeraUpdateData.torso;
+    this.tail = chimeraUpdateData.tail;
+    this.wings = chimeraUpdateData.wings;
+    this.legs = chimeraUpdateData.legs;
+    this.habitat = chimeraUpdateData.habitat;
+    return this
+}
+
+editChimeraCard(card){
+    let name =card.querySelector(".name")
+    name.innerText= `Name: ${this.name}`
+    let head =card.querySelector(".head")
+    head.innerText= `Head: ${this.head}`
+    let torso =card.querySelector(".torso")
+    torso.innerText= `Torso: ${this.torso}`
+    let wings =card.querySelector(".wings")
+    wings.innerText= `Wings: ${this.wings}`
+    let tail =card.querySelector(".tail")
+    tail.innerText= `Tail: ${this.tail}`
+    let legs =card.querySelector(".legs")
+    legs.innerText= `Legs: ${this.legs}`
+    return card
+    }
+
+static postingChimera(){
+    let button =submit()
+    button.addEventListener("click", (event) => {
+        console.log("clicked")
         
+        event.preventDefault();
+        const strongParams = {
+            chimera: {
+              name: name().value,
+              head: head().value,
+              torso: torso().value,
+              wings: wings().value,
+              legs: legs().value,
+              tail: tail().value,
+              habitat: habitatSelect().value
+            }
+        }
+        if (!editing){
+        fetch(BASEURL+ "/chimeras", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(strongParams)
 
-        
-// }
+        })
+        .then(resp => resp.json())
+        .then(chimera => {
+        let newChimera = Chimera.create(chimera.id, chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs, chimera.habitat)
+        console.log(newChimera)
+        newChimera.display()
+        resetLetterFilters()
+        resetAnimalSelect()
+        populateHabitatOptions(habitatSelect())
+        name().value = ""
+            }
+        )
+        }
+        else {
+           let chimeraId =  event.target.parentNode.parentElement.id
+           fetch(BASEURL + '/chimeras' +`/${chimeraId}`, {
+               method: "PATCH",
+               headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify(strongParams)
+                })
+              .then(resp => resp.json())
+              .then(chimera => {
+                let updatedChimera
+                debugger
+                updatedChimera = Chimera.all.find(c => c.id === chimera.id)
+                updatedChimera = updatedChimera.updateChimera(chimera)
+                editing = false
+                resetLetterFilters()
+                resetAnimalSelect()
+                name().value = ""
+                button.value = "Submit"
+                Chimera.renderChimera()
+              }
+           )
+        }
+    }
+    
+    )
+          
+}
 
 
 }
