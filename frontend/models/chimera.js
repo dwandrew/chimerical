@@ -81,7 +81,7 @@ makeChimeraCard(){
     let deleteButton = document.createElement('button')
     deleteButton.innerText = "Delete"
     deleteButton.id = `delete-${this.id}`
-    deleteButton.addEventListener("click", (event) => deleteEntry(event))
+    deleteButton.addEventListener("click", (event) => this.deleteEntry(event))
    
     chimeraCard.appendChild(name)
     chimeraCard.appendChild(head)
@@ -243,5 +243,16 @@ static postingChimera(){
           
 }
 
+deleteEntry(){
+    let chimeraId = event.target.id.split("-")[1]
+    fetch(BASEURL+ '/chimeras' + `/${chimeraId}`, {
+        method: "DELETE",
+    })
+        let index
+        index =Chimera.all.findIndex(c => c.id === parseInt(chimeraId,10))
+        Chimera.all.splice(index, 1)
+        let div = event.target.parentNode
+        div.parentNode.removeChild(div)
+    }
 
 }
