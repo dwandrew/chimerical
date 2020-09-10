@@ -39,7 +39,7 @@ class ChimerasController < ApplicationController
       set_associations(animal, @chimera)
       
     end  
-      render json: @chimera, status: :created, location: @chimera
+      render json: @chimera, status: :created, location: @chimera, include: [:habitat]
     else
       render json: @chimera.errors, status: :unprocessable_entity, message: @chimera.errors.full_messages
     end

@@ -215,6 +215,7 @@ function postingChimera(){
             console.log("response got")
         let newChimera = setNewChimera(chimera)
         let card = makeChimeraCard(chimera)
+        console.log(card)
         chimeraDiv().appendChild(card)
         resetLetterFilters()
         resetAnimalSelect()
