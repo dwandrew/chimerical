@@ -1,5 +1,4 @@
 
-
 class Chimera{
     static all = []
 
@@ -224,9 +223,7 @@ static postingChimera(){
                 })
               .then(resp => resp.json())
               .then(chimera => {
-                let updatedChimera
-                debugger
-                updatedChimera = Chimera.all.find(c => c.id === chimera.id)
+                let updatedChimera = Chimera.all.find(c => c.id === chimera.id)
                 updatedChimera = updatedChimera.updateChimera(chimera)
                 editing = false
                 resetLetterFilters()

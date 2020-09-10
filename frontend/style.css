@@ -93,24 +93,25 @@ button, #chimera-submit {
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
-    background-image: url(https://lh3.googleusercontent.com/proxy/gqsqYqMQI_9i22FulEinSDN2zEnH6sTWbeHJ4C4nkLJ8sXTRGoqhsXMNY_-Q5aivvhRQ1xlKIjtKwrz1hgqtrev4Dy5ctkcAyiVOOl2Rn9nRo6fWznvSIBZ9uiUYf-6Pz-I89jfSWQzDKG41hBNlu7JzCn4);
+    background-image: url("./images/desert.jpg");
 }
 
 .chimera-habitat-Desert p{
     background-color: rgba(255, 254, 254, 0.4);
 }
 
+
 .chimera-habitat-Mountains{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
-    background-image: url(https://www.craghoppers.com/community/wp-content/uploads/2018/06/rocky-mountains-1149489_1920.jpg);
+    background-image: url("./images/mountains.jpg");
 }
 .chimera-habitat-Plains{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
-    background-image: url(https://www.mukambi.com/wp-content/uploads/MukambiSafaris2018-33-e1533718383777.jpg);
+    background-image: url("./images/plains.jpg");
 }
 
 
