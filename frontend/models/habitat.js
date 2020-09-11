@@ -28,7 +28,7 @@ class Habitat{
     }
 
     static populateHabitatOptions(){
-        habitatSelect.innerHTML = ""
+        habitatSelect().innerHTML = ""
         Habitat.all.forEach(habitat => {
         let option = document.createElement('option')
         option.innerText = habitat.name
@@ -37,5 +37,13 @@ class Habitat{
         habitatSelect().appendChild(option)
         })
         }
+        
+    populateRandomHabitat(){
+        let option = document.createElement('option')
+        option.innerText = this.name
+        option.id = `habitatId-${this.id}`
+        option.value = this.name
+        habitatSelect().appendChild(option)
+    }
         
 }

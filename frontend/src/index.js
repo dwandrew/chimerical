@@ -228,10 +228,10 @@ function randomHabitat(){
     let randomButton = document.getElementById("random-habitat")
     randomButton.addEventListener("click", (event) => {
         event.preventDefault()
-        console.log(event.target.parentNode)
-        let habitatList = document.getElementById("chimera-habitat")
-        let list = habitatList.children 
-        // Not complete, am moving to classes so will work in there.
+        let num = randomNumFromArray(Habitat.all)
+        let randomHabitat = Habitat.all[num]
+        habitatSelect().innerHTML = ""
+        randomHabitat.populateRandomHabitat()
     })
 }
 

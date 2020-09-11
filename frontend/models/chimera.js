@@ -202,11 +202,11 @@ static postingChimera(){
         .then(resp => resp.json())
         .then(chimera => {
         let newChimera = Chimera.create(chimera.id, chimera.name, chimera.head, chimera.torso, chimera.tail, chimera.wings, chimera.legs, chimera.habitat)
-        console.log(newChimera)
+        
         newChimera.display()
         resetLetterFilters()
         resetAnimalSelect()
-        populateHabitatOptions(habitatSelect())
+        Habitat.populateHabitatOptions()
         name().value = ""
             }
         )

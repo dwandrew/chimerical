@@ -97,7 +97,9 @@ button, #chimera-submit {
 }
 
 .chimera-habitat-Desert p{
+    text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
+
 }
 
 
@@ -107,11 +109,22 @@ button, #chimera-submit {
     background-repeat: no-repeat;
     background-image: url("./images/mountains.jpg");
 }
+.chimera-habitat-Mountains p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+}
+
 .chimera-habitat-Plains{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/plains.jpg");
+}
+
+.chimera-habitat-Plains p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+    
 }
 .chimera-habitat-Ocean{
     background-size: 100% 100%;
@@ -119,41 +132,85 @@ button, #chimera-submit {
     background-repeat: no-repeat;
     background-image: url("./images/ocean.jpg");
 }
+
+
+.chimera-habitat-Ocean p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+    
+}
+
 .chimera-habitat-River{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/river.jpg");
 }
+
+.chimera-habitat-River p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+}
+
+
 .chimera-habitat-Polar{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/polar.jpg");
 }
+
+.chimera-habitat-Polar p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+}
+
 .chimera-habitat-Tundra{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/tundra.jpg");
 }
+
+.chimera-habitat-Tundra p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+}
+
 .chimera-habitat-Forest {
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/forest.jpg");
 }
+
+.chimera-habitat-Forest p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+}
+
 .chimera-habitat-Lake{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/lake.jpg");
 }
+
+.chimera-habitat-Lake p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
+}
+
 .chimera-habitat-Coast{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/coast.jpg");
+}
+
+.chimera-habitat-Coast p{
+    text-shadow: 1px 0px 1px white;
+    background-color: rgba(255, 254, 254, 0.4);
 }
 
 
