@@ -15,9 +15,9 @@ class Animal{
     }
     
     static create(id, name, wings, legs, tail){
-     let animal =  new Animal(id, name, wings, legs, tail)
-     Animal.all.push(animal)
-     return animal
+        let animal =  new Animal(id, name, wings, legs, tail)
+        Animal.all.push(animal)
+        return animal
     }
 
     static populateAnimals(){
@@ -30,29 +30,28 @@ class Animal{
 
     static populateSelectOptions(list){
         let animals = Animal.all
-           switch (list.id){
-               case "chimera-head":
-                   return addOptionsTo(list, animals)
-               break;
-               case "chimera-torso":
-               return addOptionsTo(list, animals)
-               break;
-               case "chimera-wings":
-                   return addWingOptionsTo(list, animals)
-               break;
-                   
-               case "chimera-legs":
-                   return addLegOptionsTo(list, animals)
-               break;
-                       
-               case "chimera-tail":
-                   return addTailOptionsTo(list, animals)
-               break;
-           }
-       }
+        switch (list.id){
+            case "chimera-head":
+                return addOptionsTo(list, animals)
+            break;
+
+            case "chimera-torso":
+                return addOptionsTo(list, animals)
+            break;
+
+            case "chimera-wings":
+                return addWingOptionsTo(list, animals)
+            break;
+                    
+            case "chimera-legs":
+                return addLegOptionsTo(list, animals)
+            break;
+                        
+            case "chimera-tail":
+                return addTailOptionsTo(list, animals)
+            break;
+        }
+    }
 
 
 }
-
-
-// Animal.create(name: "Raven", wings: true, legs: true, tail: true)

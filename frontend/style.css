@@ -2,8 +2,8 @@ body{
     background-image: url("./images/forest\ background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
 }
+
 .greet-content{
     background-color: rgba(255, 254, 254, 0.8);
     margin: 15px auto;
@@ -11,22 +11,19 @@ body{
     display: block;
     border: solid;
     padding: 20px;
-
 }
 
-
 .greet-content h1, p{
-text-align: center;
+    text-align: center;
 }
 
 .input-field {
-    
-margin: 15px;
-grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-grid-gap: 15px;
-display: grid;
-justify-content: auto;
-text-align: center;
+    margin: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    display: grid;
+    justify-content: auto;
+    text-align: center;
 }
 
 #chimera-name{
@@ -43,7 +40,6 @@ text-align: center;
 #form-title, #chimera-submit{
     display: block;
     grid-column: 3;
-
 }
 
 span{
@@ -76,6 +72,7 @@ span{
 #random-habitat{
     grid-column: 5;
 }
+
 #chimera-habitat{
     grid-column: 4;
 }
@@ -86,7 +83,6 @@ button, #chimera-submit {
     border-style: solid;
     font-family: Verdana, Geneva, Tahoma, serif;
     border-radius: 5px;
-
 }
 
 .chimera-habitat-Desert{
@@ -99,9 +95,7 @@ button, #chimera-submit {
 .chimera-habitat-Desert p{
     text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
-
 }
-
 
 .chimera-habitat-Mountains{
     background-size: 100% 100%;
@@ -109,6 +103,7 @@ button, #chimera-submit {
     background-repeat: no-repeat;
     background-image: url("./images/mountains.jpg");
 }
+
 .chimera-habitat-Mountains p{
     text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
@@ -124,8 +119,8 @@ button, #chimera-submit {
 .chimera-habitat-Plains p{
     text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
-    
 }
+
 .chimera-habitat-Ocean{
     background-size: 100% 100%;
     opacity: 0.8;
@@ -133,11 +128,9 @@ button, #chimera-submit {
     background-image: url("./images/ocean.jpg");
 }
 
-
 .chimera-habitat-Ocean p{
     text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
-    
 }
 
 .chimera-habitat-River{
@@ -151,7 +144,6 @@ button, #chimera-submit {
     text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
 }
-
 
 .chimera-habitat-Polar{
     background-size: 100% 100%;
@@ -212,6 +204,3 @@ button, #chimera-submit {
     text-shadow: 1px 0px 1px white;
     background-color: rgba(255, 254, 254, 0.4);
 }
-
-
-

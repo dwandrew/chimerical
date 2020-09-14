@@ -13,9 +13,9 @@ class Habitat{
     }
     
     static create(id, name, temperature, traits){
-     let habitat =  new Habitat(id, name, temperature, traits)
-     Habitat.all.push(habitat)
-     return habitat
+        let habitat =  new Habitat(id, name, temperature, traits)
+        Habitat.all.push(habitat)
+        return habitat
     }
 
     static populateHabitats(){
@@ -30,11 +30,11 @@ class Habitat{
     static populateHabitatOptions(){
         habitatSelect().innerHTML = ""
         Habitat.all.forEach(habitat => {
-        let option = document.createElement('option')
-        option.innerText = habitat.name
-        option.id = `habitatId-${habitat.id}`
-        option.value = habitat.name
-        habitatSelect().appendChild(option)
+            let option = document.createElement('option')
+            option.innerText = habitat.name
+            option.id = `habitatId-${habitat.id}`
+            option.value = habitat.name
+            habitatSelect().appendChild(option)
         })
         }
         

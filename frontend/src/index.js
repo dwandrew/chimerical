@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     Chimera.populateChimeraList()
     randomButtoniser()
     randomHabitat()
-}
-    )
+    }
+)
 
 let editing = false;
 let editedChimeraId = null;
@@ -30,38 +30,39 @@ let submitForm = () => document.getElementsByClassName("create-chimera")[0]
 
 
 function addOptionsTo(list, listToAdd){
-   let filterLetter = list.parentNode.querySelector(".letter-filter").value
-listToAdd.forEach(element => {
-    if (filterLetter === element.name[0]){
-    let option = document.createElement("option")
-    option.appendChild( document.createTextNode(element.name))
-    option.id= `${list}-${element.id}`
-    option.value = element.name;
-    option.className = "Add-Animal";
-    list.add(option)
+    let filterLetter = list.parentNode.querySelector(".letter-filter").value
+    listToAdd.forEach(element => {
+        if (filterLetter === element.name[0]){
+            let option = document.createElement("option")
+            option.appendChild( document.createTextNode(element.name))
+            option.id= `${list}-${element.id}`
+            option.value = element.name;
+            option.className = "Add-Animal";
+            list.add(option)
+        }
+    })
+    if (filterLetter === " "){
+        addNoneOption(list)
     }
-})
-
-if (filterLetter === " "){
-  addNoneOption(list)
-}
 }
 
 function addWingOptionsTo(list, listToAdd){
     let filterLetter = list.parentNode.querySelector(".letter-filter").value
-listToAdd.forEach(element => {
-    if(element.wings=== true){
-        if (filterLetter === element.name[0]){
-    let option = document.createElement("option")
-    option.appendChild( document.createTextNode(element.name))
-    option.id= `${list}-${element.id}`
-    option.value = element.name;
-    option.className = "Add-Animal";
-    list.add(option)}}
-});
-if (filterLetter === " "){
-    addNoneOption(list)
-  }
+    listToAdd.forEach(element => {
+        if(element.wings=== true){
+            if (filterLetter === element.name[0]){
+                let option = document.createElement("option")
+                option.appendChild( document.createTextNode(element.name))
+                option.id= `${list}-${element.id}`
+                option.value = element.name;
+                option.className = "Add-Animal";
+                list.add(option)
+                }
+            }
+    });
+    if (filterLetter === " "){
+        addNoneOption(list)
+    }
 }
 
 function addTailOptionsTo(list, listToAdd){
@@ -69,30 +70,33 @@ function addTailOptionsTo(list, listToAdd){
     listToAdd.forEach(element => {
         if(element.tail=== true){
             if (filterLetter === element.name[0]){
-        let option = document.createElement("option")
-        option.appendChild( document.createTextNode(element.name))
-        option.id= `${list}-${element.id}`
-        option.value = element.name;
-        option.className = "Add-Animal";
-        list.add(option)}
-    }
-    });
+                let option = document.createElement("option")
+                option.appendChild( document.createTextNode(element.name))
+                option.id= `${list}-${element.id}`
+                option.value = element.name;
+                option.className = "Add-Animal";
+                list.add(option)
+                }
+            }
+        });
     if (filterLetter === " "){
         addNoneOption(list)
       }
     }
-function addLegOptionsTo(list, listToAdd){
 
+function addLegOptionsTo(list, listToAdd){
     let filterLetter = list.parentNode.querySelector(".letter-filter").value
     listToAdd.forEach(element => {
         if(element.legs=== true){
             if (filterLetter === element.name[0]){
-        let option = document.createElement("option")
-        option.appendChild( document.createTextNode(element.name))
-        option.id= `${list}-${element.id}`
-        option.value = element.name;
-        option.className = "Add-Animal";
-        list.add(option)}}
+                let option = document.createElement("option")
+                option.appendChild( document.createTextNode(element.name))
+                option.id= `${list}-${element.id}`
+                option.value = element.name;
+                option.className = "Add-Animal";
+                list.add(option)
+            }
+        }
     });
     if (filterLetter === " "){
         addNoneOption(list)
@@ -100,13 +104,13 @@ function addLegOptionsTo(list, listToAdd){
     }
 
 function populateLetterFilters(list, letters){
-    for (let i=0; i<list.length; i++)
-    {   letters.forEach(element =>{
+    for (let i=0; i<list.length; i++){  
+        letters.forEach(element =>{
         let option = document.createElement("option")
         option.innerText = element
         option.value = element
         list[i].add(option)
-        } )
+        })
         list[i].addEventListener('change', (event) =>{ 
             let letter = event.target.value
             let field =  event.target.parentNode.children[3]
@@ -128,7 +132,8 @@ function populateLetterFilters(list, letters){
                 Animal.populateSelectOptions(tail())
             }
          }
-        )}
+        )
+    }
         
 }
 
@@ -157,10 +162,10 @@ function resetAnimalSelect(){
 }
 
 function addOption(trait){
- let option = document.createElement('option')
- option.innerText = trait
- option.value = trait
- return option
+    let option = document.createElement('option')
+    option.innerText = trait
+    option.value = trait
+    return option
 }
 
 function clearAndAdd(box, trait){
@@ -193,13 +198,12 @@ function randomNumFromArray(array){
 }
 
 function getAnimal(bodyPart, animalLetter, animalSelector){
-fetch(BASEURL + "/animals")
-.then(resp => resp.json())
-.then(animals => {
-        let animal = ''
+    fetch(BASEURL + "/animals")
+    .then(resp => resp.json())
+    .then(animals => {
         if (bodyPart === 'head'){
-        let list = animals.filter(animal => animal.name[0]=== animalLetter)
-        randomOptions(list, animalSelector)
+            let list = animals.filter(animal => animal.name[0]=== animalLetter)
+            randomOptions(list, animalSelector)
         }
         else if (bodyPart === 'torso'){
             let list = animals.filter(animal => animal.name[0]=== animalLetter)
@@ -221,7 +225,7 @@ fetch(BASEURL + "/animals")
             randomOptions(list, animalSelector)
         }
 
-})
+    })
 }
 
 function randomHabitat(){
@@ -236,15 +240,15 @@ function randomHabitat(){
 }
 
 function randomOptions(list, animalSelector){
-let num = randomNumFromArray(list)
-let animal = list[num]
-let option = document.createElement("option")
-option.innerText = animal.name
-option.id= `${list}-${animal.id}`
-option.value = animal.name;
-option.className = "Add-Animal";
-while (animalSelector.firstChild) {
-    animalSelector.removeChild(animalSelector.firstChild);
-}
-return animalSelector.appendChild(option)
+    let num = randomNumFromArray(list)
+    let animal = list[num]
+    let option = document.createElement("option")
+    option.innerText = animal.name
+    option.id= `${list}-${animal.id}`
+    option.value = animal.name;
+    option.className = "Add-Animal";
+    while (animalSelector.firstChild) {
+        animalSelector.removeChild(animalSelector.firstChild);
+    }
+    return animalSelector.appendChild(option)
 }
