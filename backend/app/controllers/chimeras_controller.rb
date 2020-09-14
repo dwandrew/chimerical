@@ -5,18 +5,21 @@ class ChimerasController < ApplicationController
   def index
     @chimeras = Chimera.all
     @chimeras = @chimeras.sort_by{|e| e.name}
-    render json: @chimeras, include: [:habitat]
+    render json: @chimeras, include: [:habitat, :size]
   end
 
   # GET /chimeras/1
   def show
-    render json: @chimera, include: [:habitat]
+    render json: @chimera, include: [:habitat, :size]
   end
 
   # POST /chimeras
   def create
     habitat = find_habitat(params[:chimera][:habitat])
+    size = Size.find_by_name(params[:chimera][:size])
     @chimera = habitat.chimeras.build(chimera_params)
+    size.chimeras << @chimera
+    @chimera.size = size
   if @chimera.save
     if @chimera.head != "none"
       animal = Animal.find_by_name(@chimera.head)
@@ -39,7 +42,7 @@ class ChimerasController < ApplicationController
       set_associations(animal, @chimera)
       
     end  
-      render json: @chimera, status: :created, location: @chimera, include: [:habitat]
+      render json: @chimera, status: :created, location: @chimera, include: [:habitat, :size]
     else
       render json: @chimera.errors, status: :unprocessable_entity, message: @chimera.errors.full_messages
     end
@@ -69,7 +72,7 @@ class ChimerasController < ApplicationController
         animal = Animal.find_by_name(@chimera.tail)
         set_associations(animal, @chimera)
       end  
-      render json: @chimera, include: [:habitat]
+      render json: @chimera, include: [:habitat, :size]
     else
       render json: @chimera.errors, status: :unprocessable_entity
     end

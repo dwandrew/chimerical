@@ -6,8 +6,9 @@
     <script src="models/chimera.js"></script>
     <script src="models/animal.js"></script>
     <script src="models/habitat.js"></script>
+    <script src="models/size.js"></script>
     <meta charset="utf-8">
-    <title>Chimeraical</title>
+    <title>Chimerical</title>
   </head>
   <body>
     <div class= "greet-content">
@@ -83,13 +84,20 @@
         <button class="randomiser-button" id="random-wings">Random</button>
       </div>
 
+      <div class="input-field" id= "size-field">
+        <span>Size:</span>
+        <select name="chimera-size" id="chimera-size" class="animal-size">
+        </select>
+        <button class="randomiser-size" id="random-size">Random</button>
+      </div>
+
       <div class="input-field" id= "habitat-field">
         <span>Habitat:</span>
         <select name="chimera-habitat" id="chimera-habitat" class="animal-habitat">
         </select>
         <button class="randomiser-habitat" id="random-habitat">Random</button>
       </div>
-
+      
       <div class="input-field" id= "submit-field">
         <input type="submit" id="chimera-submit" value= "Submit">
       </div>

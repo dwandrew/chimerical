@@ -5,10 +5,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
     populateLetterFilters(letterFilters(), ALPHABETARRAY);
     Animal.populateAnimals()
     Habitat.populateHabitats()
+    Size.populateSizes()
     Chimera.postingChimera()
     Chimera.populateChimeraList()
     randomButtoniser()
     randomHabitat()
+    randomSize()
     }
 )
 
@@ -26,6 +28,7 @@ let chimeraDiv = () => document.getElementById("chimera-list")
 let animalSelect = () => document.getElementsByClassName("animal-select")
 let randomButton = () => document.getElementsByClassName('randomiser-button')
 let habitatSelect = () => document.getElementById("chimera-habitat")
+let sizeSelect = () => document.getElementById("chimera-size")
 let submitForm = () => document.getElementsByClassName("create-chimera")[0]
 
 
@@ -236,6 +239,17 @@ function randomHabitat(){
         let randomHabitat = Habitat.all[num]
         habitatSelect().innerHTML = ""
         randomHabitat.populateRandomHabitat()
+    })
+}
+
+function randomSize(){
+    let randomButton = document.getElementById("random-size")
+    randomButton.addEventListener("click", (event) => {
+        event.preventDefault()
+        let num = randomNumFromArray(Size.all)
+        let randomSize = Size.all[num]
+        sizeSelect().innerHTML = ""
+        randomSize.populateRandomSize()
     })
 }
 

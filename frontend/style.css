@@ -69,12 +69,16 @@ span{
     margin-top: 10px;
 }
 
-#random-habitat{
+#random-habitat, #random-size{
     grid-column: 5;
 }
 
 #chimera-habitat{
     grid-column: 4;
+}
+
+#chimera-size{
+    grid-column: 3 / span 2;
 }
 
 button, #chimera-submit {

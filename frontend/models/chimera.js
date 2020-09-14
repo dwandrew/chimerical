@@ -1,7 +1,7 @@
 class Chimera{
     static all = []
 
-    constructor(id, name, head, torso, tail, wings, legs, habitat){
+    constructor(id, name, head, torso, tail, wings, legs, size, habitat){
         this.id = id
         this.name = name;
         this.head = head;
@@ -9,6 +9,7 @@ class Chimera{
         this.tail = tail;
         this.wings = wings;
         this.legs = legs;
+        this.size = size;
         this.habitat = habitat;
     };
 
@@ -20,14 +21,15 @@ class Chimera{
             chimera.torso, 
             chimera.tail, 
             chimera.wings, 
-            chimera.legs, 
+            chimera.legs,
+            chimera.size, 
             chimera.habitat
             )
         )
     }
 
-    static create(id, name, head, torso, tail, wings, legs, habitat){
-        let chimera =  new Chimera(id, name, head, torso, tail, wings, legs, habitat)
+    static create(id, name, head, torso, tail, wings, legs, size, habitat){
+        let chimera =  new Chimera(id, name, head, torso, tail, wings, legs, size, habitat)
         Chimera.all.push(chimera)
         return chimera
     }
@@ -70,6 +72,18 @@ class Chimera{
         let tail = document.createElement('p')
         tail.className = "tail"
         tail.innerText = `Tail: ${this.tail}`
+        debugger
+        let sizeDiv= document.createElement('div')
+        sizeDiv.className = `chimera-size-${this.size.name}`
+        
+        let sizeName = document.createElement('p')
+        sizeName.innerText = `Size: ${this.size.name}`
+        
+        let sizeTraits = document.createElement('p')
+        sizeTraits.innerText = `Suggested traits: ${this.size.traits}`
+        
+        sizeDiv.appendChild(sizeName)
+        sizeDiv.appendChild(sizeTraits)
 
         let habitatDiv = document.createElement('div')
         habitatDiv.className = `chimera-habitat-${this.habitat.name}`
@@ -104,6 +118,7 @@ class Chimera{
         chimeraCard.appendChild(legs)
         chimeraCard.appendChild(wings)
         chimeraCard.appendChild(tail)
+        chimeraCard.appendChild(sizeDiv)
         chimeraCard.appendChild(habitatDiv)
         chimeraCard.appendChild(editButton)
         chimeraCard.appendChild(deleteButton)
@@ -151,6 +166,9 @@ class Chimera{
         trait = addOption(this.legs)
         clearAndAdd(legsBox, trait)
 
+        trait = addOption(this.size.name)
+        clearAndAdd(sizeSelect(), trait)
+
         trait = addOption(this.habitat.name)
         clearAndAdd(habitatSelect(), trait)
 
@@ -168,6 +186,7 @@ class Chimera{
         this.tail = chimeraUpdateData.tail;
         this.wings = chimeraUpdateData.wings;
         this.legs = chimeraUpdateData.legs;
+        this.size = chimeraUpdateData.size;
         this.habitat = chimeraUpdateData.habitat;
         return this
     }
@@ -207,6 +226,7 @@ class Chimera{
                     wings: wings().value,
                     legs: legs().value,
                     tail: tail().value,
+                    size: sizeSelect().value,
                     habitat: habitatSelect().value
                 }
             }
@@ -229,7 +249,8 @@ class Chimera{
                         chimera.torso, 
                         chimera.tail, 
                         chimera.wings, 
-                        chimera.legs, 
+                        chimera.legs,
+                        chimera.size, 
                         chimera.habitat)
                     newChimera.display()
                     resetLetterFilters()
