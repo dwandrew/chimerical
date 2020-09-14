@@ -136,7 +136,6 @@ class Chimera{
         habitatDiv.appendChild(hTemp)
         habitatDiv.appendChild(hTraits)
 
-
         let editButton = document.createElement('button')
         editButton.innerText = "Edit"
         editButton.id = `edit-${this.id}`
@@ -291,7 +290,9 @@ class Chimera{
                     resetLetterFilters()
                     resetAnimalSelect()
                     Habitat.populateHabitatOptions()
+                    Size.populateSizeOptions()
                     name().value = ""
+                    window.location = `index.html#chimera-${chimera.id}`;
                 })
             }
             else {
@@ -311,9 +312,12 @@ class Chimera{
                         editing = false
                         resetLetterFilters()
                         resetAnimalSelect()
+                        Habitat.populateHabitatOptions()
+                        Size.populateSizeOptions()
                         name().value = ""
                         button.value = "Submit"
                         Chimera.renderChimera()
+                        window.location = `index.html#chimera-${chimera.id}`;
                     }
                 )
             }
