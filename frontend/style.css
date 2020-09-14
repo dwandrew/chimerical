@@ -2,6 +2,7 @@ body{
     background-image: url("./images/forest\ background.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: 'Franklin Gothic Medium', 'Arial', Arial, sans-serif;
 }
 
 .greet-content{
@@ -16,6 +17,18 @@ body{
 .greet-content h1, p{
     text-align: center;
 }
+a:link, a:visited {
+    color: midnightblue;
+}
+
+a:hover{
+    color: steelblue;
+}
+
+a:active{
+    color: yellowgreen;
+}
+
 
 .input-field {
     margin: 15px;
