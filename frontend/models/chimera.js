@@ -45,34 +45,69 @@ class Chimera{
     }
 
     makeChimeraCard(){
+
         let chimeraCard = document.createElement("div")
         chimeraCard.className = "chimera-card"
         chimeraCard.id = `chimera-${this.id}`
+
         
+
         let name = document.createElement('h2')
         name.className = "name"
         name.innerText = `Name: ${this.name}`
         
+    
         let head = document.createElement('p')
         head.className = "head"
-        head.innerText = `Head: ${this.head}`
+        head.innerText = `Head: `
+
+        let headLink = document.createElement('a')
+        headLink.target = "_blank"
+        headLink.innerText = `${this.head}`
+       
+        headLink.href = `https://www.wikipedia.org/wiki/${this.head.split(" ").join("_")}`
+        head.appendChild(headLink)
         
         let torso = document.createElement('p')
         torso.className = "torso"
-        torso.innerText = `Torso: ${this.torso}`
+        torso.innerText = `Torso: `
+
+        let torsoLink = document.createElement('a')
+        torsoLink.target = "_blank"
+        torsoLink.innerText = `${this.torso}`
+        torsoLink.href = `https://www.wikipedia.org/wiki/${this.torso.split(" ").join("_")}`
+        torso.appendChild(torsoLink)
 
         let legs = document.createElement('p')
         legs.className = "legs"
-        legs.innerText = `Legs: ${this.legs}`
+        legs.innerText = `Legs: `
+
+        let legsLink = document.createElement('a')
+        legsLink.target = "_blank"
+        legsLink.innerText = `${this.legs}`
+        legsLink.href = `https://www.wikipedia.org/wiki/${this.legs.split(" ").join("_")}`
+        legs.appendChild(legsLink)
         
         let wings = document.createElement('p')
         wings.className = "wings"
-        wings.innerText = `Wings: ${this.wings}`
+        wings.innerText = `Wings: `
+
+        let wingsLink = document.createElement('a')
+        wingsLink.target = "_blank"
+        wingsLink.innerText = `${this.wings}`
+        wingsLink.href = `https://www.wikipedia.org/wiki/${this.wings.split(" ").join("_")}`
+        wings.appendChild(wingsLink)
         
         let tail = document.createElement('p')
         tail.className = "tail"
-        tail.innerText = `Tail: ${this.tail}`
-        debugger
+        tail.innerText = `Tail: `
+
+        let tailLink = document.createElement('a')
+        tailLink.target = "_blank"
+        tailLink.innerText = `${this.tail}`
+        tailLink.href = `https://www.wikipedia.org/wiki/${this.tail.split(" ").join("_")}`
+        tail.appendChild(tailLink)
+
         let sizeDiv= document.createElement('div')
         sizeDiv.className = `chimera-size-${this.size.name}`
         
