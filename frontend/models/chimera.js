@@ -47,11 +47,12 @@ class Chimera{
     makeChimeraCard(){
 
         let chimeraCard = document.createElement("div")
-        chimeraCard.className = "chimera-card"
+        chimeraCard.className = `chimera-card chimera-habitat-${this.habitat.name}`
         chimeraCard.id = `chimera-${this.id}`
 
+        let innerDiv = document.createElement("div")
+        innerDiv.className = "inner-div"
         
-
         let name = document.createElement('h2')
         name.className = "name"
         name.innerText = `Name: ${this.name}`
@@ -115,13 +116,13 @@ class Chimera{
         sizeName.innerText = `Size: ${this.size.name}`
         
         let sizeTraits = document.createElement('p')
-        sizeTraits.innerText = `Suggested traits: ${this.size.traits}`
+        sizeTraits.innerText = `Suggested Size traits: ${this.size.traits}`
         
         sizeDiv.appendChild(sizeName)
         sizeDiv.appendChild(sizeTraits)
 
         let habitatDiv = document.createElement('div')
-        habitatDiv.className = `chimera-habitat-${this.habitat.name}`
+        // habitatDiv.className = `chimera-habitat-${this.habitat.name}`
         
         let hName = document.createElement('p')
         hName.innerText = `Habitat: ${this.habitat.name}`
@@ -130,7 +131,7 @@ class Chimera{
         hTemp.innerText = `Possible temperatures: ${this.habitat.temperature}`
         
         let hTraits = document.createElement('p')
-        hTraits.innerText = `Suggested traits: ${this.habitat.traits}`
+        hTraits.innerText = `Suggested Habitat traits: ${this.habitat.traits}`
         
         habitatDiv.appendChild(hName)
         habitatDiv.appendChild(hTemp)
@@ -146,16 +147,17 @@ class Chimera{
         deleteButton.id = `delete-${this.id}`
         deleteButton.addEventListener("click", (event) => this.deleteEntry(event))
     
-        chimeraCard.appendChild(name)
-        chimeraCard.appendChild(head)
-        chimeraCard.appendChild(torso)
-        chimeraCard.appendChild(legs)
-        chimeraCard.appendChild(wings)
-        chimeraCard.appendChild(tail)
-        chimeraCard.appendChild(sizeDiv)
-        chimeraCard.appendChild(habitatDiv)
-        chimeraCard.appendChild(editButton)
-        chimeraCard.appendChild(deleteButton)
+        innerDiv.appendChild(name)
+        innerDiv.appendChild(head)
+        innerDiv.appendChild(torso)
+        innerDiv.appendChild(legs)
+        innerDiv.appendChild(wings)
+        innerDiv.appendChild(tail)
+        innerDiv.appendChild(sizeDiv)
+        innerDiv.appendChild(habitatDiv)
+        innerDiv.appendChild(editButton)
+        innerDiv.appendChild(deleteButton)
+        chimeraCard.appendChild(innerDiv)
         return chimeraCard
     }
 
@@ -170,7 +172,7 @@ class Chimera{
     }
 
     editEntry(event){
-        let parent = event.target.parentNode
+        let parent = event.target.parentNode.parentElement
         let parentId = parent.id.split("-")[1]
         let array =parent.innerText.split("\n").filter(element => element !== "")
         array.pop()
