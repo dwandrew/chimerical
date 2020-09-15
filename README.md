@@ -1,6 +1,6 @@
 Welcome to the Chimerical App,
 
-To Get this up and running first you will need to  do the follwing
+To Get this up and running first you will need to do the following in the terminal
 1. cd backend
 2. Bundle install
 3. rails db:create
@@ -12,5 +12,5 @@ To Get this up and running first you will need to  do the follwing
 9. Open Index.html.
 
 Now feel free to have a great time making Chimera!
-Every time you run it you will have to go into the backened and run the server.
+Every time you run it you will have to go into the backend and run the server.
 This will allow the Index to operate correctly.
