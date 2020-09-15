@@ -89,7 +89,8 @@ span{
 }
 
 #chimera-size{
-    grid-column: 2 / span 2;
+    grid-column: 3 / span 1;
+    font-size: 9px;
 }
 
 button, #chimera-submit {
