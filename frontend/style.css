@@ -1,3 +1,4 @@
+/* main page content */
 body{
     background-image: url("./images/forest\ background.jpg");
     background-repeat: no-repeat;
@@ -23,6 +24,8 @@ h2{
     text-decoration: underline;
     font-family: 'Courier New', Courier, monospace;
 }
+
+/* Select box styles and input form */
 
 select {
     font-family: 'Courier New', Courier, monospace;
@@ -76,6 +79,53 @@ span{
     width: 30px;
 }
 
+
+#random-habitat, #random-size{
+    grid-column: 5;
+}
+
+#chimera-habitat{
+    grid-column: 3;
+}
+
+#chimera-size{
+    grid-column: 2 / span 2;
+}
+
+button, #chimera-submit {
+    background-color: lightblue;
+    border-color: rebeccapurple;
+    border-style: solid;
+    border-radius: 5px;
+    transition: transform .2s;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+button:hover, #chimera-submit:hover{
+    transform: scale(1.2);
+    background-color: lightseagreen;
+}
+
+/* chimera displays */
+
+.habitat-button-list{
+    margin: 20px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(11, 1fr);
+}
+.habitat-button-list p {
+    grid-column: 4 / span 5;
+    background-color: rgba(255, 254, 254, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.habitat-button-list button {
+    grid-row: 2;
+}
+
 .chimera-list{
     display: grid;
     grid-gap: 10px;
@@ -97,23 +147,6 @@ span{
     border-radius: 10px;
 }
 
-.habitat-button-list{
-    margin: 20px;
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(11, 1fr);
-}
-.habitat-button-list p {
-    grid-column: 4 / span 5;
-    background-color: rgba(255, 254, 254, 0.8);
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.habitat-button-list button {
-    grid-row: 2;
-}
-
 .chimera-card h2{
     text-align: center;
 }
@@ -123,32 +156,7 @@ span{
     margin-top: 10px;
 }
 
-#random-habitat, #random-size{
-    grid-column: 5;
-}
-
-#chimera-habitat{
-    grid-column: 4;
-}
-
-#chimera-size{
-    grid-column: 3 / span 2;
-}
-
-button, #chimera-submit {
-    background-color: lightblue;
-    border-color: rebeccapurple;
-    border-style: solid;
-    border-radius: 5px;
-    transition: transform .2s;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-}
-
-button:hover, #chimera-submit:hover{
-    transform: scale(1.2);
-    background-color: lightseagreen;
-}
+/* Chimera card backgrounds */
 
 .chimera-habitat-Desert{
     background-size: 100% 100%;
@@ -164,14 +172,12 @@ button:hover, #chimera-submit:hover{
     background-image: url("./images/mountains.jpg");
 }
 
-
 .chimera-habitat-Plains{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/plains.jpg");
 }
-
 
 .chimera-habitat-Ocean{
     background-size: 100% 100%;
@@ -180,15 +186,12 @@ button:hover, #chimera-submit:hover{
     background-image: url("./images/ocean.jpg");
 }
 
-
-
 .chimera-habitat-River{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/river.jpg");
 }
-
 
 .chimera-habitat-Polar{
     background-size: 100% 100%;
@@ -197,14 +200,12 @@ button:hover, #chimera-submit:hover{
     background-image: url("./images/polar.jpg");
 }
 
-
 .chimera-habitat-Tundra{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/tundra.jpg");
 }
-
 
 .chimera-habitat-Forest {
     background-size: 100% 100%;
@@ -213,15 +214,12 @@ button:hover, #chimera-submit:hover{
     background-image: url("./images/forest.jpg");
 }
 
-
-
 .chimera-habitat-Lake{
     background-size: 100% 100%;
     opacity: 0.8;
     background-repeat: no-repeat;
     background-image: url("./images/lake.jpg");
 }
-
 
 .chimera-habitat-Coast{
     background-size: 100% 100%;

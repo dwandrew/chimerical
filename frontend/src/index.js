@@ -240,6 +240,11 @@ function randomHabitat(){
         habitatSelect().innerHTML = ""
         randomHabitat.populateRandomHabitat()
     })
+    let fullListButton = document.getElementById("full-habitat-list")
+    fullListButton.addEventListener("click", (event) => {
+        event.preventDefault()
+        Habitat.populateHabitatOptions()
+    })
 }
 
 function randomSize(){
@@ -250,6 +255,11 @@ function randomSize(){
         let randomSize = Size.all[num]
         sizeSelect().innerHTML = ""
         randomSize.populateRandomSize()
+    })
+    let fullSizeButton = document.getElementById("full-size-list")
+    fullSizeButton.addEventListener("click", (event) => {
+        event.preventDefault()
+        Size.populateSizeOptions()
     })
 }
 
