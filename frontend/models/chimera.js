@@ -11,7 +11,7 @@ class Chimera{
         this.legs = legs;
         this.size = size;
         this.habitat = habitat;
-    };
+    }
 
     static createChimeras(chimerasData){
         chimerasData.forEach(chimera => Chimera.create(
@@ -34,9 +34,9 @@ class Chimera{
         return chimera
     }
 
-    static renderChimera(){
+    static renderChimera(chimeraList){
         chimeraDiv().innerHTML=""
-        Chimera.all.forEach(chimera => chimera.display())
+        chimeraList.forEach(chimera => chimera.display())
     }
 
     display(){
@@ -45,7 +45,6 @@ class Chimera{
     }
 
     makeChimeraCard(){
-
         let chimeraCard = document.createElement("div")
         chimeraCard.className = `chimera-card chimera-habitat-${this.habitat.name}`
         chimeraCard.id = `chimera-${this.id}`
@@ -81,34 +80,46 @@ class Chimera{
 
         let legs = document.createElement('p')
         legs.className = "legs"
-        legs.innerText = `Legs: `
+        if (this.legs !== 'none'){
+            legs.innerText = `Legs: `
+            let legsLink = document.createElement('a')
+            legsLink.target = "_blank"
+            legsLink.innerText = `${this.legs}`
+            legsLink.href = `https://www.wikipedia.org/wiki/${this.legs.split(" ").join("_")}`
+            legs.appendChild(legsLink)
+        }
+        else{
+            legs.innerText = `Legs: None`
+        }
 
-        let legsLink = document.createElement('a')
-        legsLink.target = "_blank"
-        legsLink.innerText = `${this.legs}`
-        legsLink.href = `https://www.wikipedia.org/wiki/${this.legs.split(" ").join("_")}`
-        legs.appendChild(legsLink)
-        
         let wings = document.createElement('p')
         wings.className = "wings"
-        wings.innerText = `Wings: `
+        if (this.wings !== 'none'){
+            wings.innerText = `Wings: `
+            let wingsLink = document.createElement('a')
+            wingsLink.target = "_blank"
+            wingsLink.innerText = `${this.wings}`
+            wingsLink.href = `https://www.wikipedia.org/wiki/${this.wings.split(" ").join("_")}`
+            wings.appendChild(wingsLink)
+        }
+        else{
+            wings.innerText = `Wings: None`
+        }
 
-        let wingsLink = document.createElement('a')
-        wingsLink.target = "_blank"
-        wingsLink.innerText = `${this.wings}`
-        wingsLink.href = `https://www.wikipedia.org/wiki/${this.wings.split(" ").join("_")}`
-        wings.appendChild(wingsLink)
-        
         let tail = document.createElement('p')
         tail.className = "tail"
-        tail.innerText = `Tail: `
-
-        let tailLink = document.createElement('a')
-        tailLink.target = "_blank"
-        tailLink.innerText = `${this.tail}`
-        tailLink.href = `https://www.wikipedia.org/wiki/${this.tail.split(" ").join("_")}`
-        tail.appendChild(tailLink)
-
+        if (this.tail !== 'none'){
+            tail.innerText = `Tail: `
+            let tailLink = document.createElement('a')
+            tailLink.target = "_blank"
+            tailLink.innerText = `${this.tail}`
+            tailLink.href = `https://www.wikipedia.org/wiki/${this.tail.split(" ").join("_")}`
+            tail.appendChild(tailLink)
+        }
+        else{
+            tail.innerText = `Tail: None`
+        }   
+        
         let sizeDiv= document.createElement('div')
         sizeDiv.className = `chimera-size-${this.size.name}`
         
@@ -122,7 +133,6 @@ class Chimera{
         sizeDiv.appendChild(sizeTraits)
 
         let habitatDiv = document.createElement('div')
-        // habitatDiv.className = `chimera-habitat-${this.habitat.name}`
         
         let hName = document.createElement('p')
         hName.innerText = `Habitat: ${this.habitat.name}`
@@ -166,7 +176,7 @@ class Chimera{
         .then(resp => resp.json())
         .then(chimerasList => {
             Chimera.createChimeras(chimerasList)
-            Chimera.renderChimera()
+            Chimera.renderChimera(Chimera.all)
         })
 
     }
@@ -318,7 +328,7 @@ class Chimera{
                         Size.populateSizeOptions()
                         name().value = ""
                         button.value = "Submit"
-                        Chimera.renderChimera()
+                        Chimera.renderChimera(Chimera.all)
                         window.location = `index.html#chimera-${chimera.id}`;
                     }
                 )

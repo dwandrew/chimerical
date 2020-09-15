@@ -9,6 +9,4 @@ class Chimera < ApplicationRecord
     belongs_to :habitat
     belongs_to :size
 
-
-    # scope :top_ten, -> {self.order(warband_rating: :desc)}
 end

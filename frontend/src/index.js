@@ -16,13 +16,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 let editing = false;
 let editedChimeraId = null;
-let submit = () =>document.querySelector('#chimera-submit');
-let name =() => document.querySelector('input#chimera-name');
-let head = () => document.querySelector('select#chimera-head');
-let torso = () => document.querySelector('select#chimera-torso');
-let legs = () => document.querySelector('select#chimera-legs');
-let wings = () => document.querySelector('select#chimera-wings');
-let tail = () => document.querySelector('select#chimera-tail');
+let submit = () =>document.querySelector('#chimera-submit')
+let name =() => document.querySelector('input#chimera-name')
+let head = () => document.querySelector('select#chimera-head')
+let torso = () => document.querySelector('select#chimera-torso')
+let legs = () => document.querySelector('select#chimera-legs')
+let wings = () => document.querySelector('select#chimera-wings')
+let tail = () => document.querySelector('select#chimera-tail')
 let letterFilters = () => document.getElementsByClassName("letter-filter")
 let chimeraDiv = () => document.getElementById("chimera-list")
 let animalSelect = () => document.getElementsByClassName("animal-select")
@@ -39,8 +39,8 @@ function addOptionsTo(list, listToAdd){
             let option = document.createElement("option")
             option.appendChild( document.createTextNode(element.name))
             option.id= `${list}-${element.id}`
-            option.value = element.name;
-            option.className = "Add-Animal";
+            option.value = element.name
+            option.className = "Add-Animal"
             list.add(option)
         }
     })
@@ -57,8 +57,8 @@ function addWingOptionsTo(list, listToAdd){
                 let option = document.createElement("option")
                 option.appendChild( document.createTextNode(element.name))
                 option.id= `${list}-${element.id}`
-                option.value = element.name;
-                option.className = "Add-Animal";
+                option.value = element.name
+                option.className = "Add-Animal"
                 list.add(option)
                 }
             }

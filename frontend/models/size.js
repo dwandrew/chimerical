@@ -35,7 +35,7 @@ class Size{
             option.value = size.name
             sizeSelect().appendChild(option)
         })
-        }
+    }
         
     populateRandomSize(){
         let option = document.createElement('option')

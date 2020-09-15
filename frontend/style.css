@@ -49,7 +49,7 @@ a:active{
 
 .input-field {
     margin: 15px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
     display: grid;
     justify-content: auto;
@@ -79,7 +79,7 @@ span{
 .chimera-list{
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .chimera-card{
@@ -95,6 +95,23 @@ span{
     margin: 5px;
     padding: 5px;
     border-radius: 10px;
+}
+
+.habitat-button-list{
+    margin: 20px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(11, 1fr);
+}
+.habitat-button-list p {
+    grid-column: 4 / span 5;
+    background-color: rgba(255, 254, 254, 0.8);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.habitat-button-list button {
+    grid-row: 2;
 }
 
 .chimera-card h2{
@@ -129,7 +146,8 @@ button, #chimera-submit {
 }
 
 button:hover, #chimera-submit:hover{
-    transform: scale(1.5);
+    transform: scale(1.2);
+    background-color: lightseagreen;
 }
 
 .chimera-habitat-Desert{

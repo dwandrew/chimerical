@@ -24,6 +24,8 @@ class Habitat{
         .then(habitats => {
             Habitat.createHabitats(habitats)
             Habitat.populateHabitatOptions()
+            Habitat.populateButtonOptions()
+            Habitat.allChimeraButton()
         })
     }
 
@@ -44,6 +46,30 @@ class Habitat{
         option.id = `habitatId-${this.id}`
         option.value = this.name
         habitatSelect().appendChild(option)
+    }
+
+    static populateButtonOptions(){
+        Habitat.all.forEach(habitat => {
+            let button = document.createElement('button')
+            button.innerText = habitat.name
+            button.id = `habitatId-${habitat.id}`
+            button.value = habitat.name
+            button.addEventListener('click', (event) => {
+                let chimeraHabitatList = Chimera.all.filter(chimera => chimera.habitat.id === parseInt(event.target.id.split("-")[1]))
+                Chimera.renderChimera(chimeraHabitatList)
+                window.location = `index.html#chimera-list`;
+            })
+            document.getElementsByClassName("habitat-button-list")[0].appendChild(button)
+        })
+    }
+
+    static allChimeraButton(){
+        let button = document.getElementById("all-chimera")
+        button.addEventListener('click', (event) => {
+            let chimeraHabitatList = Chimera.all
+            Chimera.renderChimera(chimeraHabitatList)
+            window.location = `index.html#chimera-list`;
+        })
     }
         
 }
