@@ -115,7 +115,6 @@ function populateLetterFilters(list, letters){
         list[i].add(option)
         })
         list[i].addEventListener('change', (event) =>{ 
-            let letter = event.target.value
             let field =  event.target.parentNode.children[3]
             field.innerHTML = ""
             let repopFilter = field.id.split("-")[1]

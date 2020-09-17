@@ -9,8 +9,8 @@ To Get this up and running first you will need to do the following in the termin
 6. rails server
 7. Open a new Terminal 
 8. cd frontend
-9. Open Index.html.
+9. Open index.html.
 
 Now feel free to have a great time making Chimera!
 Every time you run it you will have to go into the backend and run the server.
-This will allow the Index to operate correctly.
+This will allow the page to operate correctly.

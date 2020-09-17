@@ -119,6 +119,7 @@ button:hover, #chimera-submit:hover{
 .habitat-button-list p {
     grid-column: 4 / span 5;
     background-color: rgba(255, 254, 254, 0.8);
+    border: solid grey;
     border-radius: 10px;
     padding: 10px;
 }

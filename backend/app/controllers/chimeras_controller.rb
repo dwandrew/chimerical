@@ -52,6 +52,10 @@ class ChimerasController < ApplicationController
   def update
     if @chimera.update(chimera_params)
       @chimera.animals = []
+      size = find_size(params[:chimera][:size])
+      @chimera.size = size
+      habitat = find_habitat(params[:chimera][:habitat])
+      @chimera.habitat = habitat
       if @chimera.head != "none"
         animal = Animal.find_by_name(@chimera.head)
         set_associations(animal, @chimera)
@@ -71,7 +75,8 @@ class ChimerasController < ApplicationController
       if @chimera.tail != "none"
         animal = Animal.find_by_name(@chimera.tail)
         set_associations(animal, @chimera)
-      end  
+      end
+      @chimera.save  
       render json: @chimera, include: [:habitat, :size]
     else
       render json: @chimera.errors, status: :unprocessable_entity
@@ -96,6 +101,10 @@ class ChimerasController < ApplicationController
 
     def find_habitat(name)
       Habitat.find_by_name(name)
+    end
+
+    def find_size(size)
+      Size.find_by_name(size)
     end
 
     def set_associations(animal, chimera)
