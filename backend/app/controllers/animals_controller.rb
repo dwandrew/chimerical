@@ -12,6 +12,11 @@ class AnimalsController < ApplicationController
   def show
     render json: @animal
   end
+# GET /randomAnimal
+  def random
+    @animal = Animal.all.sample
+    render json: @animal
+  end
 
   # POST /animals
   def create

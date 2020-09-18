@@ -342,7 +342,7 @@ class Chimera{
         let index
         index =Chimera.all.findIndex(c => c.id === parseInt(chimeraId,10))
         Chimera.all.splice(index, 1)
-        let div = event.target.parentNode
+        let div = event.target.closest(".chimera-card")
         div.parentNode.removeChild(div)
     }
 

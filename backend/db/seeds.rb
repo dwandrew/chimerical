@@ -263,7 +263,7 @@
     Habitat.create(name: "Lake", temperature: "Cold, Temperate", traits: "Aquatic, Swimmer, Webbed Feet")
     Habitat.create(name: "Ocean", temperature: "Cold, Temperate", traits: "Aquatic, Swimmer, Webbed Feet, Bioluminescent, Camouflage, Migratory")
 
-    Size.create(name:"Tiny (Max size < 1 inch Long)", traits:"Eosocial, Parasitic, Mimicry, Symbiotic, Swarming")
+    Size.create(name:"Tiny (Max size < 1 inch Long)", traits:"Eusocial, Parasitic, Mimicry, Symbiotic, Swarming")
     Size.create(name:"Small (Max size < 1 foot Long)", traits:"Fast, Social, Intelligent, Camouflaged, Scavenger, Many Young")
     Size.create(name:"Medium (Max size < 6 foot Long)", traits:"Pack Tactics, Intelligent, Civilised, Pack Territory")
     Size.create(name:"Large (Max size < 15 foot Long)", traits:"Ambusher, Solitary, Slow Digestion, Territory, Migratory, Few Young")

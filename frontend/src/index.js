@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     randomButtoniser()
     randomHabitat()
     randomSize()
+    // randomAnimals()
     }
 )
 
@@ -177,6 +178,7 @@ function clearAndAdd(box, trait){
 
     return box.appendChild(trait)
 }
+
 function randomButtoniser(){
     let buttons = randomButton()
     for (i=0; i<buttons.length; i++){
@@ -188,9 +190,7 @@ function randomButtoniser(){
             let animalLetter = letters[0].value = alphabet[num]
             let animalSelector = event.target.parentNode.querySelector(".animal-select")
             let bodyPart = animalSelector.id.split("-")[1]
-            let animal = getAnimal(bodyPart, animalLetter, animalSelector)
-            animalSelector.value = animal
-
+            getAnimal(bodyPart, animalLetter, animalSelector)
         })
     }
 }
@@ -200,9 +200,7 @@ function randomNumFromArray(array){
 }
 
 function getAnimal(bodyPart, animalLetter, animalSelector){
-    fetch(BASEURL + "/animals")
-    .then(resp => resp.json())
-    .then(animals => {
+    let animals = Animal.all
         if (bodyPart === 'head'){
             let list = animals.filter(animal => animal.name[0]=== animalLetter)
             randomOptions(list, animalSelector)
@@ -226,8 +224,6 @@ function getAnimal(bodyPart, animalLetter, animalSelector){
             list = list.filter(animal => animal.tail === true)
             randomOptions(list, animalSelector)
         }
-
-    })
 }
 
 function randomHabitat(){
@@ -267,11 +263,25 @@ function randomOptions(list, animalSelector){
     let animal = list[num]
     let option = document.createElement("option")
     option.innerText = animal.name
-    option.id= `${list}-${animal.id}`
+    option.id= `animal-${animal.id}`
     option.value = animal.name;
     option.className = "Add-Animal";
     while (animalSelector.firstChild) {
         animalSelector.removeChild(animalSelector.firstChild);
     }
-    return animalSelector.appendChild(option)
+    animalSelector.appendChild(option)
+    return animal
 }
+
+
+
+// function randomAnimals(){
+//     let button = document.getElementById('Animal-button')
+//     button.addEventListener('click', (event) => {
+//     fetch(BASEURL + '/randomAnimal') 
+//     .then(resp => resp.json())
+//     .then(animal => {
+//         console.log(animal)
+//     })
+// })
+// }
