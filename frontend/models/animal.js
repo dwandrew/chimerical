@@ -25,17 +25,23 @@ class Animal{
         .then(resp => resp.json())
         .then(animals => {
             Animal.createAnimals(animals)
+            Animal.populateSelectOptions(headList())
+            Animal.populateSelectOptions(torsoList())
+            Animal.populateSelectOptions(wingsList())
+            Animal.populateSelectOptions(legsList())
+            Animal.populateSelectOptions(tailList())
+            
         })
     }
 
     static populateSelectOptions(list){
         let animals = Animal.all
         switch (list.id){
-            case "chimera-head":
+            case "chimera-heads":
                 return addOptionsTo(list, animals)
             break;
 
-            case "chimera-torso":
+            case "chimera-torsos":
                 return addOptionsTo(list, animals)
             break;
 
@@ -47,7 +53,7 @@ class Animal{
                 return addLegOptionsTo(list, animals)
             break;
                         
-            case "chimera-tail":
+            case "chimera-tails":
                 return addTailOptionsTo(list, animals)
             break;
         }

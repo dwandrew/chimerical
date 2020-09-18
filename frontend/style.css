@@ -52,7 +52,7 @@ a:active{
 
 .input-field {
     margin: 15px;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 15px;
     display: grid;
     justify-content: auto;
@@ -60,7 +60,7 @@ a:active{
 }
 
 #chimera-name{
-    grid-column: 2 / span 4;
+    grid-column: 2 / span 3;
 }
 
 .create-box{
@@ -79,17 +79,21 @@ span{
     width: 30px;
 }
 
-
-#random-habitat, #random-size{
-    grid-column: 5;
-}
-
-#chimera-habitat{
+.randomiser-button{
     grid-column: 3;
 }
 
+
+#full-size-list, #full-habitat-list{
+    grid-column: 4;
+}
+
+#chimera-habitat{
+    grid-column: 2;
+}
+
 #chimera-size{
-    grid-column: 3 / span 1;
+    grid-column: 2 / span 1;
     font-size: 9px;
 }
 

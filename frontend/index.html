@@ -16,6 +16,7 @@
     <p>Within this app you can create your own chimera, or let the whims of fate do their thing and let one be randomly generated! <br>
     Once created click on the Chimeras Animal parts to take you to their wikipedia page!</p>
   </div>
+
     <a name="formJump"></a>
 
     <div class = "create-box">
@@ -32,56 +33,66 @@
         
       <div class="input-field" id= "head-field">
         <span>Head:</span>
-        <label for="chimera-head-letter">Letter to filter by:</label>
-        <select name="chimera-head-letter" id="chimera-head-letter" class="letter-filter"> 
+        <!--<label for="chimera-head-letter">Letter to filter by:</label>
+         <select name="chimera-head-letter" id="chimera-head-letter" class="letter-filter"> 
         </select>
         <select name="chimera-head" id="chimera-head" class="animal-select">
         <option value = "none" selected>None</option>
-        </select>
+        </select> -->
+        <input list="chimera-heads" name="chimera-heads" id="chimera-head" class="animal-select">
+        <datalist id = "chimera-heads" ></datalist>
         <button class="randomiser-button" id="random-head">Random</button>
       </div>
 
       <div class="input-field" id= "torso-field">
         <span>Torso:</span>
-        <label for="chimera-torso-letter">Letter to filter by:</label>
+        <!-- <label for="chimera-torso-letter">Letter to filter by:</label>
         <select name="chimera-torso-letter" id="chimera-torso-letter" class="letter-filter">
         </select>
         <select name="chimera-torso" id="chimera-torso" class="animal-select">
           <option value = "none" selected>None</option>
-        </select>
+        </select> -->
+        <input list="chimera-torsos" name="chimera-torsos" id="chimera-torso" class="animal-select">
+        <datalist id = "chimera-torsos" ></datalist>
         <button class="randomiser-button" id="random-torso">Random</button>
       </div>
 
       <div class="input-field" id= "legs-field">
         <span>Legs:</span>
-        <label for="chimera-legs-letter">Letter to filter by:</label>
+        <!-- <label for="chimera-legs-letter">Letter to filter by:</label>
         <select name="chimera-legs-letter" id="chimera-legs-letter" class="letter-filter">
         </select>
         <select name="chimera-legs" id="chimera-legs" class="animal-select">
           <option value = "none" selected>None</option>
-        </select>
+        </select> -->
+        <input list="chimera-legs" name="chimera-legs" id="chimera-leg" class="animal-select">
+        <datalist id = "chimera-legs" ></datalist>
         <button class="randomiser-button" id="random-legs">Random</button>
       </div>
 
       <div class="input-field" id= "tail-field">
         <span>Tail:</span>
-        <label for="chimera-tail-letter">Letter to filter by:</label>
+        <!-- <label for="chimera-tail-letter">Letter to filter by:</label>
         <select name="chimera-tail-letter" id="chimera-tail-letter" class="letter-filter">
         </select>
         <select name="chimera-tail" id="chimera-tail" class="animal-select">
           <option value = "none" selected>None</option>
-        </select>
+        </select> -->
+        <input list="chimera-tails" name="chimera-tails" id="chimera-tail" class="animal-select">
+        <datalist id = "chimera-tails" ></datalist>
         <button class="randomiser-button" id="random-tail">Random</button>
       </div>
 
       <div class="input-field" id= "wings-field">
         <span>Wings:</span>
-        <label for="chimera-wings-letter">Letter to filter by:</label>
+        <!-- <label for="chimera-wings-letter">Letter to filter by:</label>
         <select name="chimera-wings-letter" id="chimera-wings-letter" class="letter-filter">
         </select>
         <select name="chimera-wings" id="chimera-wings" class="animal-select">
           <option value = "none" selected>None</option>
-        </select>
+        </select> -->
+        <input list="chimera-wings" name="chimera-wings" id="chimera-wing" class="animal-select">
+        <datalist id = "chimera-wings" ></datalist>
         <button class="randomiser-button" id="random-wings">Random</button>
       </div>
 
@@ -89,16 +100,16 @@
         <span>Size:</span>
         <select name="chimera-size" id="chimera-size" class="animal-size">
         </select>
-        <button class="full-size-list" id ="full-size-list">Full List</button>
         <button class="randomiser-size" id="random-size">Random</button>
+        <button class="full-size-list" id ="full-size-list">Full List</button>
       </div>
 
       <div class="input-field" id= "habitat-field">
         <span>Habitat:</span>
         <select name="chimera-habitat" id="chimera-habitat" class="animal-habitat">
         </select>
-        <button class="full-habitat-list" id ="full-habitat-list">Full List</button>
         <button class="randomiser-habitat" id="random-habitat">Random</button>
+        <button class="full-habitat-list" id ="full-habitat-list">Full List</button>
       </div>
       
       <div class="input-field" id= "submit-field">
