@@ -80,7 +80,7 @@ class Chimera{
 
         let legs = document.createElement('p')
         legs.className = "legs"
-        if (this.legs !== ""){
+        if (this.legs !== "None"){
             legs.innerText = `Legs: `
             let legsLink = document.createElement('a')
             legsLink.target = "_blank"
@@ -94,7 +94,7 @@ class Chimera{
 
         let wings = document.createElement('p')
         wings.className = "wings"
-        if (this.wings !== ""){
+        if (this.wings !== "None"){
             wings.innerText = `Wings: `
             let wingsLink = document.createElement('a')
             wingsLink.target = "_blank"
@@ -108,8 +108,7 @@ class Chimera{
 
         let tail = document.createElement('p')
         tail.className = "tail"
-        debugger
-        if (this.tail !== ""){
+        if (this.tail !== "None"){
             tail.innerText = `Tail: `
             let tailLink = document.createElement('a')
             tailLink.target = "_blank"

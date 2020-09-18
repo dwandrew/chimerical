@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     randomButtoniser()
     randomHabitat()
     randomSize()
+    resetAnimalSelect()
 
     }
 )
@@ -94,7 +95,7 @@ function addLegOptionsTo(list, listToAdd){
 function resetAnimalSelect(){
     let animalSelect= document.getElementsByClassName("animal-select")
     for (let i =0; i<animalSelect.length; i++){
-        animalSelect[i].value = ""
+        animalSelect[i].value = "None"
         }
 }
 

@@ -20,28 +20,32 @@ class ChimerasController < ApplicationController
     @chimera = habitat.chimeras.build(chimera_params)
     size.chimeras << @chimera
     @chimera.size = size
-  if @chimera.save
     if @chimera.head != "none"
       animal = Animal.find_by_name(@chimera.head)
+      @chimera.head = animal.name
       set_associations(animal, @chimera)
     end  
     if @chimera.torso != "none" 
       animal = Animal.find_by_name(@chimera.torso)
+      @chimera.torso = animal.name
       set_associations(animal, @chimera)
     end  
-    if @chimera.legs != "none"
+    if @chimera.legs != ""
       animal = Animal.find_by_name(@chimera.legs)
+      @chimera.legs = animal.name
       set_associations(animal, @chimera)
     end  
-    if @chimera.wings != "none" 
+    if @chimera.wings != "" 
       animal = Animal.find_by_name(@chimera.wings)
+      @chimera.wings = animal.name
       set_associations(animal, @chimera)
     end  
-    if @chimera.tail != "none" 
+    if @chimera.tail != "" 
       animal = Animal.find_by_name(@chimera.tail)
+      @chimera.tail = animal.name
       set_associations(animal, @chimera)
-      
-    end  
+    end 
+    if @chimera.save 
       render json: @chimera, status: :created, location: @chimera, include: [:habitat, :size]
     else
       render json: @chimera.errors, status: :unprocessable_entity, message: @chimera.errors.full_messages

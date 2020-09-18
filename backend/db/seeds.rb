@@ -232,13 +232,14 @@
     Animal.create(name: "Woodpecker", wings: true, legs: true, tail: true)
     Animal.create(name: "Worm", wings: false, legs: false, tail: true)
     Animal.create(name: "Wren", wings: true, legs: true, tail: true)
-    Animal.create(name: "Xantus's Hummingbird", wings: true, legs: true, tail: true)
+    Animal.create(name: "Xantus Hummingbird", wings: true, legs: true, tail: true)
     Animal.create(name: "Xolo", wings: false, legs: true, tail: true)
     Animal.create(name:"Yap monarch", wings: true, legs: true, tail: true)
     Animal.create(name: "Yak", wings: false, legs: true, tail: true)
     Animal.create(name: "Zebra", wings: false, legs: true, tail: true)
     Animal.create(name: "Zebra Finch", wings: true, legs: true, tail: true)
     Animal.create(name: "Zorilla", wings: false, legs: true, tail: true)
+    Animal.create(name: "None", wings: true, legs: true, tail: true)
     
 
 

@@ -30,7 +30,6 @@ class Animal{
             Animal.populateSelectOptions(wingsList())
             Animal.populateSelectOptions(legsList())
             Animal.populateSelectOptions(tailList())
-            
         })
     }
 

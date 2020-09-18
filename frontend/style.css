@@ -10,7 +10,7 @@ body{
 .greet-content{
     background-color: rgba(255, 254, 254, 0.8);
     margin: 15px auto;
-    width: max-content;
+    width: 95%;
     display: block;
     border: solid;
     padding: 20px;
