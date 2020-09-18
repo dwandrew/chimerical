@@ -1,16 +1,24 @@
-Welcome to the Chimerical App,
+# README
 
-To Get this up and running first you will need to do the following in the terminal
-1. cd backend
-2. Bundle install
-3. rails db:create
-4. rails db:migrate
-5. rails db:seed
-6. rails server
-7. Open a new Terminal 
-8. cd frontend
-9. Open index.html.
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-Now feel free to have a great time making Chimera!
-Every time you run it you will have to go into the backend and run the server.
-This will allow the page to operate correctly.
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
