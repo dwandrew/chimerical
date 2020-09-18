@@ -1,4 +1,4 @@
-const BASEURL= "https://chimera-maker.herokuapp.com/";
+const BASEURL= "https://chimera-maker-backend.herokuapp.com";
 
 document.addEventListener("DOMContentLoaded", (event) => {
     Animal.populateAnimals()
