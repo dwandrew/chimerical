@@ -14,3 +14,5 @@ To Get this up and running first you will need to do the following in the termin
 Now feel free to have a great time making Chimera!
 Every time you run it you will have to go into the backend and run the server.
 This will allow the page to operate correctly.
+
+The other option is check it out here on Heroku! https://chimera-maker.herokuapp.com/
